@@ -1,0 +1,47 @@
+[
+  {
+    "uniqueID": "360ec02e-bd9d-4aab-9d1f-639595b2ca16",
+    "client": {
+      "uniqueID": "7a204c3d-49f6-47d2-bc2d-ee21b60e5a14",
+      "name": "aaa",
+      "address": "",
+      "observations": [],
+      "also_known_by": [],
+      "createdAt": "21/01/2026, 09:52:31",
+      "isActive": true
+    },
+    "products": [
+      {
+        "product": {
+          "name": "ghjjgfj",
+          "defaultWhyToUse": [],
+          "defaultHowToUse": "",
+          "defaultObservation": "",
+          "defaultAlert": "",
+          "defaultPresentation": 0,
+          "fullPriceTag": 0,
+          "discountPriceTag": 0,
+          "defaultDiscount": 0,
+          "isActive": true,
+          "uniqueID": "040d64c2-9415-4f88-b408-783be2d09664",
+          "createdAt": "2026-01-16T12:52:38.862Z",
+          "updatedAt": "2026-01-16T12:52:38.862Z"
+        },
+        "args": {},
+        "finalPrice": 120
+      }
+    ],
+    "productsTotalCost": 120,
+    "deliveryCost": 0,
+    "hasDeliveryCost": false,
+    "finalPrice": 0,
+    "createdAt": "2026-01-16T12:52:49.476Z",
+    "updatedAt": "2026-01-16T13:24:39.032Z",
+    "isActive": true,
+    "isSingle": true,
+    "isPayed": false,
+    "args": {
+      "useNameIcon": false
+    }
+  }
+]

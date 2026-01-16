@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-stretch: 75% 125%; 
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Workbench';
+    src: url('/fonts/Workbench/Workbench-Regular-VariableFont_BLED,SCAN.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Yellowtail';
+    src: url('/fonts/Yellowtail/Yellowtail-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Caveat';
+    src: url('/fonts/Caveat/Caveat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cascadia Code';
+    src: url('/fonts/Cascadia Code/CascadiaCode-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Borel';
+    src: url('/fonts/Borel/Borel-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Tilt Neon';
+    src: url('/fonts/Tilt Neon/TiltNeon-Regular-VariableFont_XROT,YROT.ttf') format('truetype');
+    font-weight: normal; 
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Eurostile';
+    src: url('/fonts/Eurostile/eurostile-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('/fonts/Courier Prime/CourierPrime-Regular.ttf') format('truetype');
+    font-weight: normal; /* normal */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('/fonts/Courier Prime/CourierPrime-Bold.ttf') format('truetype');
+    font-weight: bold; /* bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Chunk Five';
+    src: url('/fonts/Chunk Five/chunkfive.regular.ttf') format('truetype');
+    font-weight: 400; /* bold */
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Zantroke';
+    src: url('/fonts/Zantroke/Zantroke.otf') format('opentype');
+    font-weight: normal; 
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'HVD Comic';
+    src: url('/fonts/Hvd Comic/hvd-comic-serif-pro.hvdcomicserifpro.otf') format('opentype');
+    font-weight: normal; 
+    font-style: normal;
+    font-display: auto;
+}
