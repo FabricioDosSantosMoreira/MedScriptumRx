@@ -199,10 +199,60 @@ export const HistoryIconContainer = styled.div`
   min-width: 24px;
   min-height: 32px;
 
+  background-color: transparent;
+  cursor: pointer;
+`
+
+export const HistoryIconStyleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  min-width: 24px;
+  min-height: 32px;
+
   overflow: hidden;
 
-  background-color: white;
+  background-color: transparent;
+  cursor: pointer;
 `
+
+export const HistoryIconLabel = styled.span`
+  position: absolute;
+  top: -16px;
+  right: -16px;
+
+  padding: 2px 6px;
+
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1;
+
+  border-radius: 999px;
+  background-color: #111;
+  color: #fff;
+
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+  /* 🔹 estado inicial */
+  opacity: 0;
+  transform: translateY(4px) scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+
+  /* 🔹 aparece no hover do container */
+  ${HistoryIconContainer}:hover & {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+`;
+
+
 
 export const HistoryIconStyle = styled.div<{
   $topCircle?: boolean;
@@ -316,6 +366,89 @@ export const HistoryIconStyle = styled.div<{
 
 
 
+
+export const PaperIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  min-width: 48px;
+  min-height: 32px;
+
+  background-color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+
+export const PaperIconStyleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  min-width: 48px;
+  min-height: 32px;
+
+  overflow: hidden;
+
+  background-color: white;
+
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+
+export const PaperIconLabel = styled.span`
+  position: absolute;
+  top: -16px;
+  right: -16px;
+
+  padding: 2px 6px;
+
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1;
+
+  border-radius: 999px;
+  background-color: #111;
+  color: #fff;
+
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+
+  /* 🔹 estado inicial */
+  opacity: 0;
+  transform: translateY(4px) scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+
+  /* 🔹 aparece no hover do container */
+  ${PaperIconContainer}:hover & {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+`;
+
+
+export const PaperIconStyle = styled.div<{
+  $isActive?: boolean;
+}>`
+  position: absolute;
+
+  width: 30px;
+  height: 14px;
+
+  background-color: transparent;
+`
 
 
 
@@ -455,7 +588,6 @@ export const ProductList = styled.div`
   margin-left: 24px;
 
   width: -webkit-fill-available;
-
 `;
 
 
@@ -469,27 +601,23 @@ export const ProductSpan = styled.div`
 `;
 
 export const ProductName = styled.textarea<{$isNameLong: boolean}>`
-  
   font-size: 1rem;
+  font-family: ${({ theme }) => theme.fonts.tilt_neon};
   color: #000000;
 
-  font-family: ${({ theme }) => theme.fonts.tilt_neon};
- 
-  line-height: 16px;
-  transform: translateY(2.5px);
-
-  min-height: 24px;
+  transform: translateY(0px);
 
   resize: none;
   overflow: hidden;
 
-  min-width: 100%;
+  min-width: calc(100% - 26px); // Icon Width + gap value
 
   ${({ $isNameLong }) => !$isNameLong && css`
     transform: translateY(4px);
-    line-height: 24px;
+    max-height: 24px;
   `}
 
+  align-items: center;
   border: none;
   background: transparent;
   outline: none;
@@ -561,9 +689,9 @@ export const WhyToUseList = styled.div`
   flex-direction: row;
   
   margin-top: 2px;
-
-  
   gap: 6px;
+
+  width: 100%;
 `
 
 
@@ -615,17 +743,36 @@ export const ProductWhyToUseContainer = styled.div`
   flex-direction: column;
 
   margin-left: 40px;
-
 `
 
 
-export const ProductWhyToUse = styled.span`
+export const ProductWhyToUse = styled.textarea`
   font-size: 1rem;
   color: #000000;
 
   font-family: ${({ theme }) => theme.fonts.tilt_neon};
 
-  line-height: 16px;
+  resize: none;
+  overflow: hidden;
+
+  min-width: calc(100% - 18px); // Icon Width + gap value
+
+  max-height: 18px;
+
+  border: none;
+  background: transparent;
+  outline: none;
+
+  &:focus,
+  &:focus-visible {
+    border: none;
+    background: transparent;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: rgba(250, 250, 211, 0.5);
+  }
 `
 
 
@@ -825,8 +972,6 @@ export const ProductHowToUseContainer = styled.div<{$isStringTooLong?: boolean}>
   justify-content: flex-start;
   flex-direction: row;
 
-
-
   gap: 6px;
   margin-left: 28px;
   margin-top: 6px;
@@ -845,6 +990,8 @@ export const ProductHowToUse = styled.span`
   font-family: ${({ theme }) => theme.fonts.tilt_neon};
 
   line-height: 16px;
+
+  
 `
 
 

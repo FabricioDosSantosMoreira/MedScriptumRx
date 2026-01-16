@@ -2,68 +2,75 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { loadPrescriptionData } from '@/lib/utils/utils';
-import { PrescriptionData } from '@/types/Index';
-
+import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';
 import PageLayout from '@/components/Layouts/Page/PageLayout';
 
-import { 
-  PageContainer,  
-} from './page.styles';
+import { loadClients, loadPrescriptions } from '@/lib/utils/utils';
+import { ResolvedPrescription } from '@/types/PrescriptionData';
+import { resolvePrescriptions } from '@/lib/utils/utils';
 
-import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';
+import {
+  PageContainer,
+} from './page.styles';
 
 
 export default function Page() {
-  const [prescriptions, setPrescriptions] = useState<PrescriptionData[]>([]);
+  const [resolvedPrescriptions, setResolvedPrescriptions] = useState<ResolvedPrescription[]>([]);
+
+  const loadData = async () => {
+    const [prescriptions, clients] = await Promise.all([
+      loadPrescriptions(true),
+      loadClients(true),
+    ]);
+
+    const resolved = resolvePrescriptions(prescriptions, clients);
+    setResolvedPrescriptions(resolved);
+  };
 
   useEffect(() => {
-    loadPrescriptionData().then((data) => setPrescriptions(data));
+    loadData();
   }, []);
 
-
-  // Split array into chunks
-  const chunkArray = (arr: any[], size: number) =>
+  const chunkArray = <T,>(arr: T[], size: number): T[][] =>
     Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
       arr.slice(i * size, i * size + size)
     );
 
-  const updatePrescriptionData = () => {
-    loadPrescriptionData().then((data) => setPrescriptions(data));
-  }
+  const singles = resolvedPrescriptions.filter(p => p.isSingle);
+  const normals = resolvedPrescriptions.filter(p => !p.isSingle);
 
-  // Separate single prescriptions from normal ones
-  const singles = prescriptions.filter((p) => p.isSingle);
-  const normals = prescriptions.filter((p) => !p.isSingle);
+  const normalGroups = chunkArray(normals, 2);
 
-  // Chunk only the normal prescriptions
-  const normalGroups: PrescriptionData[][] = chunkArray(normals, 2);
-
-  // Create final groups
-  const prescriptionGroups: PrescriptionData[][] = [
-    ...singles.map((s) => [s]), // One group per single
+  const prescriptionGroups: ResolvedPrescription[][] = [
+    ...singles.map(s => [s]),
     ...normalGroups,
   ];
 
-  
   const groupActionButtons: GroupActionButtons[] = [
     {
-      buttonName: "Imprimir 🖨️",
-      buttonType: "print",
-      buttonCallbackFunc: () => null
+      buttonName: 'Imprimir 🖨️',
+      buttonType: 'print',
+      buttonCallbackFunc: () => null,
     },
     {
-      buttonName: "Atualizar data.json 📕",
-      buttonType: "update",
-      buttonCallbackFunc: updatePrescriptionData
-    }
+      buttonName: 'Atualizar 💫',
+      buttonType: 'update',
+      buttonCallbackFunc: loadData,
+    },
   ];
 
   return (
     <PageLayout>
       <PageContainer>
         {prescriptionGroups.map((group, groupId) => (
-          <PrescriptionGroup key={groupId} group={group} groupId={groupId} groupActionButtons={groupActionButtons} onDataUpdated={updatePrescriptionData} isHistoryData={false}/>
+          <PrescriptionGroup
+            key={groupId}
+            group={group}
+            groupId={groupId}
+            groupActionButtons={groupActionButtons}
+            onDataUpdated={loadData}
+            isHistoryData={false}
+          />
         ))}
       </PageContainer>
     </PageLayout>

@@ -26,14 +26,13 @@ import { PrescriptionContainer, Header, ProductList,
   CustomHeaderBannerIconPacientBase,
   CustomHeaderBannerIconPacientHead,
   CustomHeaderBannerIconCheckList,
-  CustomHeaderBannerIconPacientContent
+  CustomHeaderBannerIconPacientContent,
+  ProductHowToUse
 } from './PrescriptionSheet.styles';
 
 
 // Images
 import LogoAssociadas from '@/public/images/logo/logo-rede-associadas.png';
-import OrangeCheckList from '@/public/images/icons/icon-checklist-orange.png';
-import BlueCheckList from '@/public/images/icons/icon-checklist-blue.png';
 
 import MedicineIcon1 from '@/public/images/icons/icon-medicine-1.png';
 import MedicineIcon2 from '@/public/images/icons/icon-medicine-2.png';
@@ -113,7 +112,7 @@ export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
               <PacientIconStyles />
             </PacientIcon>
           )}
-          <PacientName>{data.clientName}</PacientName>
+          <PacientName>{data.client.name}</PacientName>
         </PacientSpan>
 
         {/* List of Products */}
@@ -164,7 +163,7 @@ export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
                     </CalendarIconStyle>
                   </CalendarIconContainer>
                 )}
-                <ProductWhyToUse>{product.howToUse}</ProductWhyToUse>
+                <ProductHowToUse>{product.howToUse}</ProductHowToUse>
               </ProductHowToUseContainer>
 
               {product.observation && productArgs.useObservationIcon && (

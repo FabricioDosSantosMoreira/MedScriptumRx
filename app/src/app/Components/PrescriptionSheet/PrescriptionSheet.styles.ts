@@ -15,12 +15,10 @@ export const PrescriptionContainer = styled.div`
   width: 530px;
   height: 680px;
 
-  width: 530px;
-  height: 680px;
-  background-color: #f16d1e;
-  
   background-color: #adb4bd;
   border-radius: 12px;
+
+  height: 744px;
   
   /* outline como área de corte */
   outline: 1px dashed #000;  /* pode ser solid/dotted */

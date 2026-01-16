@@ -1,4 +1,4 @@
-import { PrescriptionData } from '@/types/PrescriptionData';
+import { ClientData, PrescriptionData, ResolvedPrescription } from '@/types/PrescriptionData';
 
 
 export function formatDate(): string {
@@ -32,26 +32,69 @@ export function getDateTimedFormated(timezone: string = 'BRT'): string {
   return formatter.format(date);
 }
 
-export async function loadPrescriptionData(): Promise<PrescriptionData[]> {
-  const res = await fetch("/Api/Prescriptions?is_history_data=false", { method: "GET" });
+export async function loadPrescriptions(isActive: boolean): Promise<PrescriptionData[]> {
+  const res = await fetch(
+    `/Api/Prescriptions?is_active=${isActive}`,
+    { method: 'GET' }
+  );
 
-  // console.log(res)
-  if (!res.ok) throw new Error("Failed to load prescriptions");
+  if (!res.ok) {
+    throw new Error('Failed to load prescriptions');
+  }
 
-  const data: PrescriptionData[] = await res.json();
-
-  // console.log("Prescriptions loaded:", data);
-  return data;
+  return res.json();
 }
 
-export async function loadPrescriptionHistoryData(): Promise<PrescriptionData[]> {
-  const res = await fetch("/Api/Prescriptions?is_history_data=true", { method: "GET" });
+export async function loadClients(isActive: boolean): Promise<ClientData[]> {
+  const res = await fetch(
+    `/Api/Clients?is_active=${isActive}`,
+    { method: 'GET' }
+  );
 
-  // console.log(res)
-  if (!res.ok) throw new Error("Failed to load history prescriptions!");
+  if (!res.ok) {
+    throw new Error('Failed to load clients');
+  }
 
-  const data: PrescriptionData[] = await res.json();
+  return res.json();
+}
 
-  // console.log("History Prescriptions loaded:", data);
-  return data;
+
+export function resolvePrescriptions(
+  prescriptions: PrescriptionData[],
+  clients: ClientData[]
+): ResolvedPrescription[] {
+
+  const clientMap = new Map(
+    clients.map(client => [client.uniqueID, client])
+  );
+
+  return prescriptions
+    .map((p): ResolvedPrescription | null => {
+      // 🔒 Prescrição inválida sem ID
+      if (!p.uniqueID) return null;
+
+      const client =
+        (p.clientID && clientMap.get(p.clientID)) ??
+        null;
+
+      // 🔒 Prescrição sem cliente não entra na UI
+      if (!client) return null;
+
+      return {
+        uniqueID: p.uniqueID,
+
+        client,
+
+        createdAt: p.createdAt ?? new Date().toISOString(),
+        isActive: p.isActive ?? true,
+        isSingle: p.isSingle ?? false,
+
+        products: Array.isArray(p.products)
+          ? p.products
+          : [],
+
+        args: p.args ?? {}
+      };
+    })
+    .filter(Boolean) as ResolvedPrescription[];
 }

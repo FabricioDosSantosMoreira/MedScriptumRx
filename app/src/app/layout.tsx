@@ -3,7 +3,7 @@ import { Providers } from '@/providers/AppProviders';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en-US'>
+    <html lang='pt-BR'>
       <body>
         <Providers>
           {children}

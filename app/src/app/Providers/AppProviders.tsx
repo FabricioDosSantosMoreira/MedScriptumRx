@@ -19,6 +19,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           {children}
         </PageWrapperProvider>
       </DeviceTypeProvider>
+
     </ThemeProvider>
   );
 }

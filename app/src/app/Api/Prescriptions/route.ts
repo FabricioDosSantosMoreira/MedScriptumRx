@@ -3,173 +3,175 @@ import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { PrescriptionData } from '@/types/PrescriptionData';
-import { getDateTimedFormated } from '@/lib/utils/utils'; // adjust path if needed
+import { getDateTimedFormated } from '@/lib/utils/utils';
 
-const currentPrescriptionDataPath = path.join(process.cwd(), 'public', 'data', 'data.json');
-const historyDataPath = path.join(process.cwd(), 'public', 'data', 'dump_data.json');
+const prescriptionsPath = path.join(process.cwd(), 'public', 'data', 'prescriptions.json');
+
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const isHistoryData = searchParams.get("is_history_data");
-
-  console.log("isHistoryData:", isHistoryData);
+  const isActiveParam = searchParams.get('is_active');
 
   try {
+    const raw = fs.readFileSync(prescriptionsPath, 'utf-8');
+    let prescriptions: PrescriptionData[] = JSON.parse(raw);
 
-    let fileContent = '';
-    let dataFilePath = '';
-
-    // Escolhe arquivo com base no query param
-    if (isHistoryData === 'true') {
-      fileContent = fs.readFileSync(historyDataPath, 'utf-8');
-      dataFilePath = historyDataPath
-    } else {
-      fileContent = fs.readFileSync(currentPrescriptionDataPath, 'utf-8');
-      dataFilePath = currentPrescriptionDataPath
-    }
-
-    let prescriptions: PrescriptionData[] = JSON.parse(fileContent);
     let updated = false;
 
     prescriptions = prescriptions.map((p) => {
-      let updatedThisItem = false;
-
       const updatedP = { ...p };
 
       if (!updatedP.uniqueID) {
         updatedP.uniqueID = uuidv4();
-        updatedThisItem = true;
+        updated = true;
       }
 
       if (!updatedP.createdAt) {
         updatedP.createdAt = getDateTimedFormated();
-        updatedThisItem = true;
+        updated = true;
       }
 
-      if (updatedP.isActive === undefined || updatedP.isActive === null) {
+      if (updatedP.isActive === undefined) {
         updatedP.isActive = true;
-        updatedThisItem = true;
+        updated = true;
       }
 
-      if (updatedP.isSingle === undefined || updatedP.isSingle === null) {
+      if (updatedP.isSingle === undefined) {
         updatedP.isSingle = false;
-        updatedThisItem = true;
+        updated = true;
       }
 
-      if (updatedThisItem) updated = true;
       return updatedP;
     });
 
     if (updated) {
-      console.log("[WARN] -> Updated missing tags")
-      fs.writeFileSync(dataFilePath, JSON.stringify(prescriptions, null, 2));
+      fs.writeFileSync(
+        prescriptionsPath,
+        JSON.stringify(prescriptions, null, 2)
+      );
+    }
+
+    // 🔎 filtro por isActive
+    if (isActiveParam !== null) {
+      const isActive = isActiveParam === 'true';
+      prescriptions = prescriptions.filter(p => p.isActive === isActive);
     }
 
     return NextResponse.json(prescriptions);
   } catch (err) {
     console.error(err);
     return NextResponse.json(
-      { error: 'Failed to read or update prescriptions' },
+      { error: 'Failed to load prescriptions' },
       { status: 500 }
     );
   }
 }
 
+
+// export async function POST(request: Request) {
+//   try {
+//     const { uniqueID, updatedData } = await request.json();
+
+//     if (!uniqueID || !updatedData) {
+//       return NextResponse.json(
+//         { error: 'Missing parameters' },
+//         { status: 400 }
+//       );
+//     }
+
+//     const raw = fs.readFileSync(prescriptionsPath, 'utf-8');
+//     const prescriptions: PrescriptionData[] = JSON.parse(raw);
+
+//     const index = prescriptions.findIndex(p => p.uniqueID === uniqueID);
+
+//     if (index === -1) {
+//       return NextResponse.json(
+//         { error: 'Prescription not found' },
+//         { status: 404 }
+//       );
+//     }
+
+//     prescriptions[index] = {
+//       ...prescriptions[index],
+//       ...updatedData,
+//       uniqueID, // garante imutabilidade
+//     };
+
+//     fs.writeFileSync(
+//       prescriptionsPath,
+//       JSON.stringify(prescriptions, null, 2)
+//     );
+
+//     return NextResponse.json({
+//       success: true,
+//       updated: prescriptions[index],
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     return NextResponse.json(
+//       { error: 'Failed to update prescription' },
+//       { status: 500 }
+//     );
+//   }
+// }
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { uniqueID, updatedData, isHistoryData } = body;
+    const { uniqueID, updatedData } = body;
 
-    if (!uniqueID || !updatedData) {
-      return NextResponse.json(
-        { error: "Missing parameters (uniqueID or updatedData)" },
-        { status: 400 }
-      );
+    if (!updatedData) {
+      return NextResponse.json({ error: 'Missing updatedData' }, { status: 400 });
     }
 
-    const filePath = isHistoryData
-      ? historyDataPath
-      : currentPrescriptionDataPath;
-
-    // Load correct file
-    const fileContent = fs.readFileSync(filePath, "utf8");
-    let prescriptions: PrescriptionData[] = JSON.parse(fileContent);
-
-    const index = prescriptions.findIndex((p) => p.uniqueID === uniqueID);
-
-    if (index === -1) {
-      return NextResponse.json(
-        { error: "Prescription not found" },
-        { status: 404 }
-      );
+    // read file (create if missing)
+    let raw = '[]';
+    try {
+      raw = fs.readFileSync(prescriptionsPath, 'utf-8');
+    } catch (e) {
+      // file may not exist
     }
 
-    // Update values
-    prescriptions[index] = {
-      ...prescriptions[index],
-      ...updatedData,
-      uniqueID: prescriptions[index].uniqueID, // keep original id
+    let list = [];
+    try {
+      list = JSON.parse(raw);
+    } catch (e) {
+      list = [];
+    }
+
+    const now = getDateTimedFormated();
+
+    // ensure defaults on updatedData
+    const ensured = {
+      uniqueID: updatedData.uniqueID ?? uniqueID ?? uuidv4(),
+      clientID: updatedData.clientID ?? updatedData.clientID ?? '',
+      createdAt: updatedData.createdAt ?? now,
+      isActive: typeof updatedData.isActive === 'boolean' ? updatedData.isActive : true,
+      isSingle: typeof updatedData.isSingle === 'boolean' ? updatedData.isSingle : false,
+      products: Array.isArray(updatedData.products) ? updatedData.products : [],
+      args: updatedData.args ?? {},
     };
 
-    // Write back to current file
-    fs.writeFileSync(filePath, JSON.stringify(prescriptions, null, 2));
+    const idx = list.findIndex((p: any) => p.uniqueID === ensured.uniqueID);
 
-    // ------------------------------------------------------------
-    // MOVEMENT LOGIC: Always execute (coming from current OR history)
-    // ------------------------------------------------------------
-    const updated = prescriptions[index];
-
-    // Load both files
-    const historyFile = fs.readFileSync(historyDataPath, "utf8");
-    let historyList: PrescriptionData[] = JSON.parse(historyFile);
-
-    const currentFile = fs.readFileSync(currentPrescriptionDataPath, "utf8");
-    let currentList: PrescriptionData[] = JSON.parse(currentFile);
-
-    // --------------------------
-    // CASE A — Move to history
-    // --------------------------
-    if (updated.isActive === false) {
-      // Remove from current.json
-      currentList = currentList.filter((p) => p.uniqueID !== uniqueID);
-
-      // Insert/update in history
-      const histIndex = historyList.findIndex((p) => p.uniqueID === uniqueID);
-
-      if (histIndex === -1) historyList.push(updated);
-      else historyList[histIndex] = updated;
-
-      fs.writeFileSync(currentPrescriptionDataPath, JSON.stringify(currentList, null, 2));
-      fs.writeFileSync(historyDataPath, JSON.stringify(historyList, null, 2));
+    if (idx === -1) {
+      list.push(ensured);
+    } else {
+      list[idx] = {
+        ...list[idx],
+        ...ensured,
+        uniqueID: list[idx].uniqueID, // maintain id
+        createdAt: list[idx].createdAt ?? ensured.createdAt, // keep original createdAt if present
+      };
     }
 
-    // --------------------------
-    // CASE B — Move to active
-    // --------------------------
-    else if (updated.isActive === true) {
+    fs.writeFileSync(prescriptionsPath, JSON.stringify(list, null, 2));
 
-      // Remove from history
-      historyList = historyList.filter((p) => p.uniqueID !== uniqueID);
+    const saved = list.find((p: any) => p.uniqueID === ensured.uniqueID);
 
-      // Insert/update in active list
-      const curIndex = currentList.findIndex((p) => p.uniqueID === uniqueID);
-
-      if (curIndex === -1) currentList.push(updated);
-      else currentList[curIndex] = updated;
-
-      fs.writeFileSync(currentPrescriptionDataPath, JSON.stringify(currentList, null, 2));
-      fs.writeFileSync(historyDataPath, JSON.stringify(historyList, null, 2));
-    }
-
-    return NextResponse.json({
-      success: true,
-      updated: prescriptions[index],
-    });
+    return NextResponse.json(saved);
   } catch (err) {
     console.error(err);
-    return NextResponse.json(
-      { error: "Failed to update prescription" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Failed to upsert prescription' }, { status: 500 });
   }
 }
