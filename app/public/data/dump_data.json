@@ -1,0 +1,2787 @@
+[
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 400mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático"
+        ],
+        "howToUse": "1cp. no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Nattokinase 150mg",
+        "whyToUse": [],
+        "howToUse": "1cp. no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Barberina HCL 97% 500mg",
+        "whyToUse": [],
+        "howToUse": "1cp. na refeição 1 e 5",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "fc302c7a-e413-4bbc-acdc-28c46cc34aa2",
+    "createdAt": "15/09/2025, 15:12:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vitamina E 400UI",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vitamina D3 3.000UI",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Valsartana 160mg",
+        "whyToUse": [
+          "Medicamento para a pressão",
+          "Regula a pressão sistólica e diastólica"
+        ],
+        "howToUse": "1cp. as 08:00hr da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Anastrozol 1mg",
+        "whyToUse": [],
+        "howToUse": "1cp. a cada 4 dias",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "06c8d862-87e8-471c-b467-70851153f2ef",
+    "createdAt": "15/09/2025, 15:06:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Ômega 3",
+        "whyToUse": [],
+        "howToUse": "1 dose no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Composto Anti Acne",
+        "whyToUse": [],
+        "howToUse": "2cp. juntos após o café e 2cp. juntos após o jantar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "4923fdb7-ca43-44e9-9624-fe32eb106535",
+    "createdAt": "15/09/2025, 15:06:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Júlia",
+    "products": [
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1cp. em jejum",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 240mg + Ioimbina 8mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "3386f62a-c70a-43e5-835f-646e54342585",
+    "createdAt": "15/09/2025, 15:06:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Deivid Estevan",
+    "products": [
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d0dd7106-676f-4377-ac04-fd13efc44b14",
+    "createdAt": "15/09/2025, 15:06:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Gustavo de Souza",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "a262c3f2-9326-47a6-89b2-3b54d80aa498",
+    "createdAt": "16/09/2025, 16:12:10",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus",
+    "products": [
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "4910179d-c128-49c5-8c80-de7eb936c807",
+    "createdAt": "16/09/2025, 16:12:10",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "isSingle": true,
+    "clientName": "Pâmela Cardoso",
+    "products": [
+      {
+        "name": "Composto Pré Treino",
+        "whyToUse": [],
+        "howToUse": "2caps. (1 dose) 30min. antes do treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "146d7f24-b361-40d0-8d2e-e7c8d4fd43a8",
+    "createdAt": "16/09/2025, 17:04:24",
+    "isActive": false
+  },
+  {
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Ômega 3",
+        "whyToUse": [],
+        "howToUse": "2caps. no almoço",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cúrcuma 500mg",
+        "whyToUse": [],
+        "howToUse": "2caps. (1 dose) no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1cp. na manhã após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "createdAt": "17/09/2025, 09:09:17",
+    "uniqueID": "8abfccf0-3c16-4bed-9979-2663020d6c2b",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg",
+        "whyToUse": [
+          "Regula a testosterona e GH"
+        ],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Silimarina 200mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1cp. logo após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "createdAt": "17/09/2025, 09:09:17",
+    "uniqueID": "29f8204f-5238-46a4-87a5-b0bc477025f0",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1cp. na manhã após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1cp. logo após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "c2e1f6e0-2e6a-4079-a820-e743aa38a65a",
+    "createdAt": "18/09/2025, 10:29:35",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Emanuel Calpe",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D3 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "0c2f9b90-f8ee-44e2-9f66-2e3c7da4dd61",
+    "createdAt": "18/09/2025, 10:29:35",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Carla",
+    "isSingle": true,
+    "products": [
+      {
+        "name": "Bomba Capilar Feminina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "5f1a1529-cb26-473c-90d0-421818ed3ecd",
+    "createdAt": "19/09/2025, 17:15:54",
+    "isActive": false
+  },
+  {
+    "isSingle": true,
+    "clientName": "Thais Rosa",
+    "products": [
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [
+          "Ação anti inflamatória da pele;",
+          "Diminui o aspecto da celulite;",
+          "Diminui a retenção."
+        ],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "0371e2a0-da23-4012-8183-20d9a25b2937",
+    "createdAt": "24/09/2025, 16:12:09",
+    "isActive": false
+  },
+  {
+    "isSingle": true,
+    "clientName": "Madelaine Correa Netto",
+    "products": [
+      {
+        "name": "Biotina 5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Siliciumax 150mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Iombina 10mg",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "52a7f354-c993-4700-a42f-44b4673683ea",
+    "createdAt": "27/09/2025, 08:50:29",
+    "isActive": false
+  },
+  {
+    "clientName": "Kevin Duarte",
+    "products": [
+      {
+        "name": "Minoxidil 2,5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. à noite",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. à noite",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Anastrozol 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      },
+      {
+        "name": "Vit. B6 30mg + Vit. B2 20mg + Vit.B12 250mcg + Cisteína 50mg + Ácido Fólico 250mcg + Vit. B5 50mg + Biotina 5mg + Zinco 20mg + Cobre 0,2mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d323e9fd-02b0-4b6c-bbb9-8324e6731cb0",
+    "createdAt": "27/09/2025, 08:50:30",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Bruno Freitas",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg + Vit. B12 1.000mcg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 200mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1cp. logo após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "279d0843-fe6a-426e-94c3-43cb2e46061c",
+    "createdAt": "30/09/2025, 08:21:16",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Carlos Vieira",
+    "products": [
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "01547807-e5c0-4605-9dad-37e105f45d99",
+    "createdAt": "30/09/2025, 08:21:16",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Claudia Azambuja",
+    "products": [
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "44c84e76-385c-46ac-aad0-0177259d845c",
+    "createdAt": "30/09/2025, 08:21:16",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1cp. na manhã após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D3 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "c3ca0bfb-c00c-4de4-bd8f-cde68e5c8066",
+    "createdAt": "30/09/2025, 15:40:58",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "isSingle": true,
+    "clientName": "Rozi",
+    "products": [
+      {
+        "name": "Espironolactiona 25mg",
+        "whyToUse": [
+          "Diurético;",
+          "Controla espinhas."
+        ],
+        "howToUse": "Meio comprimido após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "bc7bdcd6-876b-45cf-84ba-547e373d0cae",
+    "createdAt": "30/09/2025, 16:31:26",
+    "isActive": false
+  },
+  {
+    "clientName": "Eduardo Limberger",
+    "products": [
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "b3506f37-5791-4e6c-b50d-6f54fa8556d5",
+    "createdAt": "30/09/2025, 15:51:18",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "isSingle": true,
+    "clientName": "Kevin Duarte",
+    "products": [
+      {
+        "name": "Keranat 150mg",
+        "whyToUse": [],
+        "howToUse": "1cp. na manhã após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Solução Clobetasol 0,5mg/ml",
+        "whyToUse": [],
+        "howToUse": "Pingar 20 gotas 1 vez ao dia por 30 dias. Após completo, aplicar 3 vezes na semana por mais 60 dias",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Valeriana 50mg",
+        "whyToUse": [],
+        "howToUse": "1cp pela manhã",
+        "observation": "Tomar +1cp à tarde caso stress ou ansiedade",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "037b389c-366c-4803-a5f7-735e010dd540",
+    "createdAt": "02/10/2025, 11:17:35",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Carmen Inês Anselmo",
+    "products": [
+      {
+        "name": "Polypodium Leucotomos 240mg + Pinus (Picnogenol) 150mg + Luteína 10mg",
+        "whyToUse": [
+          "Promove a produção de colágeno e elastina;",
+          "Uniformiza o tom e camadas da pele;",
+          "Previne / reduz cabelos brancos;",
+          "Promove a Renovação celular;",
+          "Foto protetor."
+        ],
+        "howToUse": "1cp. na manhã após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "686f1310-b8d3-4b53-8ba3-3e820f198638",
+    "createdAt": "06/10/2025, 16:48:33",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Fernando Lopes",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "05262ae9-8461-47b5-8495-16d0ac1bf9b1",
+    "createdAt": "08/10/2025, 16:23:46",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Gel Niacinamida 15% + Ácido Azelaico 10%",
+        "whyToUse": [
+          "Manchas das espinhas."
+        ],
+        "howToUse": "Aplicar à noite no local desejado",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e6aa357d-87de-4cf5-bd6e-c5543c8d8b7a",
+    "createdAt": "09/10/2025, 08:50:17",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Gustavo de Souza",
+    "products": [
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "b0fe9af3-d7e0-4ea2-b580-2398fefc6ecf",
+    "createdAt": "09/10/2025, 08:53:40",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Daniela Loeblein",
+    "products": [
+      {
+        "name": "Picolinato de Cromo 150mcg + Vit.C 1000mg + Vit. E 450UI +ㅤVit. A 500UI + 5-HTP 150mg",
+        "whyToUse": [],
+        "howToUse": "1cp. pela manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Gaba 300mg + Coenzima Q10 100mg + PQQ 5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. pela manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3/6/9",
+        "whyToUse": [],
+        "howToUse": "1 dose (2 caps.) no café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "690e3ba3-ae0c-45be-8a88-5200dd4345f0",
+    "createdAt": "13/10/2025, 10:02:28",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Diogo Gracioli",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg + Vit. B12 1.000mcg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3",
+        "whyToUse": [],
+        "howToUse": "1 dose (2 caps.) no café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Melatonina 5mg",
+        "whyToUse": [],
+        "howToUse": "1 cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "3a97755c-499e-454e-902e-a36f285578b4",
+    "createdAt": "13/10/2025, 15:44:17",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Lucca",
+    "products": [
+      {
+        "name": "Sonoplus F",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes de dormir",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "27e1dc4d-05b2-48e4-923c-aa6d9fb11d0d",
+    "createdAt": "13/10/2025, 15:44:17",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Cafeína 400mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático"
+        ],
+        "howToUse": "1cp. no café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "31be2532-66af-4357-8acd-040da03eae70",
+    "createdAt": "13/10/2025, 16:20:43",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Rozi",
+    "products": [
+      {
+        "name": "Cafeína 150mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "c019d818-a871-4b59-881f-341bce465ba5",
+    "createdAt": "13/10/2025, 16:20:43",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Felipe Finetti Martins",
+    "products": [
+      {
+        "name": "Composto Anti Acne",
+        "whyToUse": [],
+        "howToUse": "2caps. juntas após o café e 2caps. juntas após o jantar.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "c52d68e8-85e7-43e6-9bf6-93355c28814c",
+    "createdAt": "14/10/2025, 11:08:06",
+    "isActive": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      },
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1cp. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "5320f53c-6281-4735-837e-990651e2ab8d",
+    "createdAt": "14/10/2025, 11:08:06",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Milena Correa",
+    "products": [
+      {
+        "name": "Memorize",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes dos estudos",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "c40732fc-78bd-4a9a-8991-7426c58e9493",
+    "createdAt": "14/10/2025, 15:56:04",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Felipe Poersch",
+    "isSingle": true,
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 15mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "198f2722-1bb7-43ae-87a8-1bdae60f2f75",
+    "createdAt": "15/10/2025, 17:29:43",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. logo após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3",
+        "whyToUse": [],
+        "howToUse": "2caps. durante o almoço",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e8315fa1-563f-4aaa-b7e7-c9862ad8d53c",
+    "createdAt": "21/10/2025, 15:58:25",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg",
+        "whyToUse": [
+          "Regula a testosterona e GH"
+        ],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 200mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1caps. logo após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "4c3b4e2e-b5ba-4de7-a5d6-a173e440d493",
+    "createdAt": "21/10/2025, 15:59:49",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Bomba Capilar Feminina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Complexo Fortalecedor de Unhas e Cabelos",
+        "whyToUse": [],
+        "howToUse": "1caps. antes de dormir",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "ee7beff6-8b04-4818-aaba-53a04ac5bf37",
+    "createdAt": "21/10/2025, 16:03:26",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Camili Coelho",
+    "products": [
+      {
+        "name": "Complexo Fortalecedor de Unhas e Cabelos",
+        "whyToUse": [],
+        "howToUse": "1caps. antes de dormir",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "2859511e-2ae0-456e-bb81-272cfcfd6ab0",
+    "createdAt": "21/10/2025, 17:03:57",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Roger Oliveira",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg",
+        "whyToUse": [
+          "Regula a testosterona e GH"
+        ],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cobavital",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do almoço e 1cp. 30min. antes da janta",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d7c329e8-e09c-41d8-81a6-b4ccc8e9595d",
+    "createdAt": "21/10/2025, 17:15:41",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Carolina Andrade",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg",
+        "whyToUse": [
+          "Regula a testosterona e GH"
+        ],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. logo após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 150mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "4d038481-a9ad-4fd1-9d44-f347a63999fe",
+    "createdAt": "21/10/2025, 17:15:41",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Felipe Marques",
+    "products": [
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e3e987c4-e153-4800-92c7-e62fd2715b1c",
+    "createdAt": "23/10/2025, 16:46:33",
+    "isActive": false
+  },
+  {
+    "clientName": "Bruno Freitas",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "a8fff713-9078-40b4-ac7b-1eb60eba7ba2",
+    "createdAt": "23/10/2025, 16:46:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Claudia Freitas",
+    "products": [
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "9460f749-fed2-4dc3-8412-60ddac888b0e",
+    "createdAt": "24/10/2025, 09:54:06",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Eduardo",
+    "products": [
+      {
+        "name": "Tamoxifeno 20mg",
+        "whyToUse": [],
+        "howToUse": "1cp. após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vitamina E 400mg",
+        "whyToUse": [],
+        "howToUse": "1caps. após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "99f94cf1-d0e8-4030-b8a9-f8889851d95b",
+    "createdAt": "28/10/2025, 16:31:25",
+    "isActive": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Arthur Souza",
+    "products": [
+      {
+        "name": "Composto Anti Acne",
+        "whyToUse": [],
+        "howToUse": "2cp. juntos após o café e 2cp. juntos após o jantar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "f871708d-76cb-4617-b585-0b94beadad8c",
+    "createdAt": "28/10/2025, 16:31:26",
+    "isActive": false
+  },
+  {
+    "isSingle": true,
+    "clientName": "Emanuel Calpe",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D3 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1cp. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "e2223325-7d6b-4307-a023-26ac17ff828e",
+    "createdAt": "28/10/2025, 16:31:26",
+    "isActive": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "1 dose no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Gel Niacinamida 15% + Ácido Azelaico 10%",
+        "whyToUse": [
+          "Manchas das espinhas."
+        ],
+        "howToUse": "Aplicar à noite no local desejado",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Composto Anti Acne",
+        "whyToUse": [],
+        "howToUse": "2caps. juntos após o café e 2caps. juntos após o jantar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "997b468b-61d3-4a88-81cb-6db592ddf5d9",
+    "createdAt": "28/10/2025, 16:31:26",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático"
+        ],
+        "howToUse": "1caps. no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Nattokinase 150mg",
+        "whyToUse": [],
+        "howToUse": "1caps. no café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Barberina HCL 97% 500mg",
+        "whyToUse": [],
+        "howToUse": "1caps. na refeição 1 e 5",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e20ff68f-5d20-4913-bffa-b62b652425c2",
+    "createdAt": "28/10/2025, 16:31:26",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vitamina E 400UI",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vitamina D3 3.000UI",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Anastrozol 1mg",
+        "whyToUse": [],
+        "howToUse": "1caps. a cada 4 dias",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d43e9143-18f8-442d-8a78-e23d1c2c650a",
+    "createdAt": "28/10/2025, 16:31:26",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "isSingle": true,
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg + Vit. B12 1.000mcg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "ea7638b9-9721-4776-bae7-c80a87d28815",
+    "createdAt": "28/10/2025, 17:10:45",
+    "isActive": false
+  },
+  {
+    "clientName": "Júlia",
+    "products": [
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. em jejum",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 280mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "6e17f2b1-6781-4c1b-861f-36aa18e4437f",
+    "createdAt": "03/11/2025, 09:47:02",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Kelison Nunes",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e4610e08-60cd-4355-abf6-20fbc298c385",
+    "createdAt": "04/11/2025, 08:54:09",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Vagner Toledo",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "f0347dc9-4a21-475b-89af-39f5734d748e",
+    "createdAt": "04/11/2025, 10:37:08",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Bruna Borges",
+    "products": [
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "ba8efd5e-91c6-44b5-bbb8-f65e2b382f7e",
+    "createdAt": "06/11/2025, 15:15:05",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Eduardo",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2cp. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1cp. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1cp. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "803baabb-dbbd-4548-a8ee-63c82060ac9e",
+    "createdAt": "06/11/2025, 15:30:38",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Nicolas Guimarães",
+    "products": [
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      },
+      {
+        "name": "Solução Minoxidil 10%",
+        "whyToUse": [],
+        "howToUse": "Aplicar nas falhas do cabelo ou barba 1 vez ao dia",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "a03816a7-7c03-4792-a1be-4c903b7f53d0",
+    "createdAt": "07/11/2025, 11:13:07",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Graciele de Moura",
+    "products": [
+      {
+        "name": "Espironolactiona 25mg",
+        "whyToUse": [
+          "Diurético;",
+          "Controla espinhas."
+        ],
+        "howToUse": "1cp após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,1mg",
+        "whyToUse": [],
+        "howToUse": "1caps. após o café da manhã em dias alternados (dia sim, dia não)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vit. C 500mg",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Zembrin 8mg",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "2caps. (1 dose) no café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "848b4556-8eab-445b-8bc5-6a2f9fae8205",
+    "createdAt": "11/11/2025, 08:53:59",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Felipe Albuquerque",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "a66e1fbd-da08-4df1-a56b-71628f403355",
+    "createdAt": "11/11/2025, 08:53:59",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. na manhã após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "aacc866c-526b-4d23-8807-1c417f786992",
+    "createdAt": "12/11/2025, 15:00:26",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Alexandre",
+    "products": [
+      {
+        "name": "Cafeína 200mg + Ioimbina 15mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "bacd18b6-c598-4ae6-9451-913b0ad204e3",
+    "createdAt": "13/11/2025, 10:55:28",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Viviane Moreira",
+    "products": [
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Fitase 3.000UI + Zinco 50mg",
+        "whyToUse": [],
+        "howToUse": "",
+        "observation": "1 dose igual à 2caps.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "bd4ad788-f26b-420b-8c03-d5fb4c156593",
+    "createdAt": "12/11/2025, 15:00:26",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. na manhã após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Complexo Fortalecedor de Unhas e Cabelos",
+        "whyToUse": [],
+        "howToUse": "1caps. antes de dormir",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "2caps. no almoço",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d97617b3-903e-4cd1-8453-33163db98cf7",
+    "createdAt": "18/11/2025, 15:16:50",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Carla",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit B6 10mg",
+        "whyToUse": [
+          "Regula a testosterona e GH"
+        ],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 200mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1caps. logo após o café",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "5cbf4d36-1a95-4d3d-b16b-ee2c1ebdcb5a",
+    "createdAt": "18/11/2025, 15:16:50",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Caroline",
+    "products": [
+      {
+        "name": "Silimarina 200mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1caps. logo após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "65c7ed68-1852-41ac-8b1c-48636aB60b40e",
+    "createdAt": "18/11/2025, 16:18:56",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Jhonatan Francisco",
+    "products": [
+      {
+        "name": "Mais Saciedade Plus",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr antes do jantar.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Digesticona",
+        "whyToUse": [],
+        "howToUse": "1caps. durante o almoço e ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ1caps. durante o jantar.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "fc18d17a-9b4a-418f-acb3-629c6b1b998c",
+    "createdAt": "25/11/2025, 09:04:19",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Alice Almeida",
+    "products": [
+      {
+        "name": "Bomba Capilar Feminina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "73c54faa-8cf5-490a-adfe-ec91d79b19df",
+    "createdAt": "25/11/2025, 09:04:19",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Cafeína 400mg + Ioimbina 20mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      },
+      {
+        "name": "Mais Saciedade Plus",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr antes do jantar.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "0580397d-451a-4dbb-b0be-63064c1ed2fa",
+    "createdAt": "25/11/2025, 09:07:09",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Rozi",
+    "products": [
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e9cf442a-0f89-4e88-a819-37f54a90c3fe",
+    "createdAt": "25/11/2025, 09:07:09",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Julia Alves",
+    "products": [
+      {
+        "name": "Cafeína 210mg + Ioimbina 3mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      },
+      {
+        "name": "Ioimbina 3mg",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Zembrin 8mg",
+        "whyToUse": [],
+        "howToUse": "1caps. após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "2caps. juntas durante alguma refeição",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "cffe643f-d96e-45e4-b5b1-b459139a2652",
+    "createdAt": "26/11/2025, 15:15:49",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Felipe Marques",
+    "products": [
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 150mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "f238ec65-72f8-418b-b93e-edf277bffb28",
+    "createdAt": "26/11/2025, 15:15:49",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Mariana Pierre",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Mais Saciedade Plus",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr antes do almoço eㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ 1caps. antes do jantar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Taurina 500mg",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ioimbina 3mg",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "8dc1a0b2-3cd3-4ac1-b6aa-0312a548f1fb",
+    "createdAt": "26/11/2025, 15:15:49",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Claudia Freitas",
+    "products": [
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d4a374f3-9ae7-4d5c-a057-61cf39f90d67",
+    "createdAt": "27/11/2025, 15:45:49",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Vieira",
+    "products": [
+      {
+        "name": "Vit. C 500mg + Bisglicinato de Zinco 30mg + Vit. D3 7.000UI",
+        "whyToUse": [
+          "Aumentar imunidade"
+        ],
+        "howToUse": "1caps. após o café da manhã",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar)",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Composto Anti Acne",
+        "whyToUse": [],
+        "howToUse": "2caps. juntas após o café e ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ2caps. juntas após o jantar",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "d8bf6932-d98c-4d29-9c45-1f0aa2723dd6",
+    "createdAt": "27/11/2025, 08:05:48",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Daniele Martins",
+    "products": [
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino",
+        "observation": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "290cef9e-25d9-4cd0-9383-f281894acd10",
+    "createdAt": "02/12/2025, 09:52:15",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Felipe Finetti Martins",
+    "products": [
+      {
+        "name": "Anastrozol 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1caps. em dias intercalados.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cabergolina 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1cp à cada 20 dias.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "1a8920e4-4e63-42b4-8e70-53db99315011",
+    "createdAt": "02/12/2025, 10:34:11",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Bruna Borges",
+    "products": [
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "cdbc0d47-8d40-4763-8283-9b2e910fb3e5",
+    "createdAt": "02/12/2025, 10:34:11",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Kelison Nunes",
+    "products": [
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Tintura de Quebra Pedra",
+        "whyToUse": [
+          "Ajuda na eliminação do cálculo renal."
+        ],
+        "howToUse": "10ml em meio copo de água 2 vezes ao dia.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "b2b34231-af97-4e09-a2c7-cc749f959c83",
+    "createdAt": "02/12/2025, 10:34:11",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Calmabem",
+        "whyToUse": [
+          "Calmante natural."
+        ],
+        "howToUse": "1caps. logo ao acordar.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "02d9189c-759b-4242-9c1b-4f5ab110b995",
+    "createdAt": "02/12/2025, 10:37:36",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Cleber Lappe",
+    "isSingle": false,
+    "products": [
+      {
+        "name": "Silimarina 200mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1caps. logo após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Biotina 10mg",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "09613dd9-ea40-471c-9b2c-aa64d14326b3",
+    "createdAt": "05/12/2025, 10:53:03",
+    "isActive": false
+  },
+  {
+    "clientName": "Thaise Fagundes",
+    "products": [
+      {
+        "name": "Metilcobalamina 1.000mcg",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "e08aa071-339d-4f51-b9b9-fd44007d4277",
+    "createdAt": "02/12/2025, 17:07:02",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "isSingle": false,
+    "clientName": "Bianca Bervig",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina (Vit. B12) 7.000mcg + Vit. D 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino.",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "789191f3-a844-4146-a47d-e26db56ad273",
+    "isActive": false,
+    "createdAt": "10/12/2025, 10:35:09"
+  },
+  {
+    "isSingle": false,
+    "clientName": "Bianca Bervig",
+    "products": [
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Mais Saciedade Plus",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr antes do jantar.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Calmabem",
+        "whyToUse": [
+          "Calmante natural."
+        ],
+        "howToUse": "1caps. logo ao acordar.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "8a3dcd3f-0665-4f97-9777-bc31587185f8",
+    "createdAt": "09/12/2025, 16:40:00",
+    "isActive": false
+  },
+  {
+    "clientName": "Charles Limberger",
+    "products": [
+      {
+        "name": "Zinco 30mg + Magnésio 250mg + Vit. D3 2.000UI + Vit. B6 10mg (ZMA)",
+        "whyToUse": [],
+        "howToUse": "2caps. à noite antes de deitar",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Colágeno Tipo II + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Metilcobalamina 7.000mcg (Vit. B12) + Vit. D3 50.000UI",
+        "whyToUse": [
+          "Fortalecimento ósseo e cognitivo."
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manha.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "createdAt": "10/12/2025, 09:50:12",
+    "isActive": false,
+    "isSingle": false,
+    "uniqueID": "f8efaf87-c152-47bc-a7ea-105118177fdc"
+  },
+  {
+    "clientName": "Thais Rosa",
+    "products": [
+      {
+        "name": "Silimarina 100mg (Silybum Marianum)",
+        "whyToUse": [
+          "Protetor Hepático."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [
+          "Ação anti inflamatória da pele;",
+          "Diminui o aspecto da celulite;",
+          "Diminui a retenção."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "4586fe5a-3d32-4540-94a1-8cfea57171c9",
+    "createdAt": "10/12/2025, 09:53:33",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Viviana Nunes",
+    "products": [
+      {
+        "name": "Metilcobalamina 7.000mcg (Vit. B12) + Vit. D3 50.000UI",
+        "whyToUse": [
+          ""
+        ],
+        "howToUse": "1caps. 1 vez na semana após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dutasterida 0,5mg",
+        "whyToUse": [],
+        "howToUse": "1caps. 1 vez na semana após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Siliciumax 150mg",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "2caps. juntas durante alguma refeição de preferência.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Bomba Capilar Feminina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação.",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "3eab542d-8d82-4a68-8fb6-906c1fa64756",
+    "createdAt": "10/12/2025, 10:09:07",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Vitamina D3 3.000UI",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Vitamina E 400UI",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Melatonina 5mg",
+        "whyToUse": [
+          "Diminuir quadros de Insônia."
+        ],
+        "howToUse": "1caps. à noite antes de deitar.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Nattokinase",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "2caps. juntas durante alguma refeição de preferência.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "8ba5399f-016e-4838-b01e-5c6c1febae68",
+    "createdAt": "10/12/2025, 10:31:32",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Tadalafila 10mg + Arginina 250mg (Vasodilatador)",
+        "whyToUse": [],
+        "howToUse": "1caps. 1hr. antes do treino.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Sérum Facial Contra Cravos e Espinhas",
+        "whyToUse": [],
+        "howToUse": "Aplicar à noite no local desejado e retirar na manhã (lavar).",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Bomba Capilar Masculina",
+        "whyToUse": [],
+        "howToUse": "Aplicar de 3 a 4 jatos no couro cabeludo à noite, com o cabelo podendo estar úmido ou seco. Após aplicar massagear o local por 1min e deixar.",
+        "observation": "Pode usar cremes no couro cabeludo após a aplicação",
+        "alert": ""
+      },
+      {
+        "name": "Composto Anti Acne",
+        "whyToUse": [],
+        "howToUse": "2caps. juntos após o café e 2caps. juntos após o jantar",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "isActive": false,
+    "uniqueID": "f60e3c2b-d5c2-465b-ad4f-24f3991d5132",
+    "createdAt": "10/12/2025, 10:26:19",
+    "isSingle": false
+  },
+  {
+    "clientName": "Claudia Freitas",
+    "products": [
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [
+          "Ação anti inflamatória da pele;",
+          "Diminui o aspecto da celulite;",
+          "Diminui a retenção."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Espironolactiona 25mg",
+        "whyToUse": [
+          "Diurético."
+        ],
+        "howToUse": "1cp após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "9d01d037-2c8c-4f6a-8ea5-429b6908330b",
+    "createdAt": "10/12/2025, 09:54:38",
+    "isActive": false,
+    "isSingle": false
+  },
+  {
+    "clientName": "Matheus Dalagnol",
+    "products": [
+      {
+        "name": "Colágeno Tipo II 40mg + Ácido Hialurônico 250mg + Vit. C 45mg",
+        "whyToUse": [
+          "Previne Lesões nas articulações;",
+          "Renova a cartilagem."
+        ],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 300mg (Silybum Marianum)",
+        "whyToUse": [],
+        "howToUse": "1caps. durante o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Valsartana 160mg",
+        "whyToUse": [
+          "Medicamento para a pressão;",
+          "Regula a pressão sistólica e diastólica."
+        ],
+        "howToUse": "1caps. as 08:00hr da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "isActive": false,
+    "uniqueID": "8843350b-2385-4289-9f0a-869bc15d3733",
+    "createdAt": "10/12/2025, 10:26:19",
+    "isSingle": false
+  },
+  {
+    "clientName": "Júlia",
+    "products": [
+      {
+        "name": "Ômega 3 1G",
+        "whyToUse": [],
+        "howToUse": "2caps. juntas durante alguma refeição de preferência.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Dimpless 40mg (Celulite)",
+        "whyToUse": [],
+        "howToUse": "1caps. ao dia após o café da manhã.",
+        "observation": "",
+        "alert": ""
+      },
+      {
+        "name": "Silimarina 100mg (Silybum Marianum)",
+        "whyToUse": [],
+        "howToUse": "1caps. durante o café da manhã.",
+        "observation": "",
+        "alert": ""
+      }
+    ],
+    "uniqueID": "fc783ff8-36f8-4aeb-aefd-38caeea60d01",
+    "createdAt": "10/12/2025, 10:36:49",
+    "isActive": false,
+    "isSingle": false
+  }
+]

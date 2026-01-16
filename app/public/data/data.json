@@ -1,0 +1,18 @@
+[
+  {
+    "clientName": "Bruno Freitas",
+    "products": [
+      {
+        "name": "Cafeína 200mg + Ioimbina 10mg (Termogênico)",
+        "whyToUse": [],
+        "howToUse": "1caps. 30min. antes do cardio ou treino.",
+        "observation": "",
+        "alert": "O termogênico pode promover taquicardia e mal estar, como tremores extrapiramidal nos primeiros 3 dias de uso."
+      }
+    ],
+    "uniqueID": "a8bb80a6-91ae-408d-a92e-f06cf216c60a",
+    "createdAt": "10/12/2025, 16:48:53",
+    "isActive": true,
+    "isSingle": true
+  }
+]
