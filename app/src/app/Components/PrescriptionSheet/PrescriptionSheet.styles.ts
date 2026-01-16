@@ -552,7 +552,7 @@ export const CalendarIconContainer = styled.div`
   min-width: 24px;
   min-height: 24px;
 
-
+  z-index: 100;
 `
 
 
@@ -756,6 +756,8 @@ export const ProductHowToUse = styled.span`
   font-family: ${({ theme }) => theme.fonts.tilt_neon};
 
   line-height: 16px;
+
+  z-index: 100;
 `
 
 
@@ -857,7 +859,7 @@ export const Footer = styled.div`
   min-width: 60%;
   min-height: 88px;
 
-  z-index: 100;
+  z-index: 98;
 
   background-color: #505050;
   
@@ -874,7 +876,7 @@ export const Footer = styled.div`
     min-width: 160px;
     min-height: 160px;
 
-    z-index: 10999;
+    z-index: 99;
 
     background-color: #505050;
 

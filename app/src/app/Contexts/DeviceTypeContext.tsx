@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 import { theme } from '@/styles/Theme/CustomTheme';
-import { Breakpoint } from '@/types/Index'; 
+import { Breakpoint } from '@/app/Types/Index'; 
 
 
 function parseBreakpoint(value: string): number {

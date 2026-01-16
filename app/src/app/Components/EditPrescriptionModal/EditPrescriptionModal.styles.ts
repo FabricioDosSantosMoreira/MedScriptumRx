@@ -76,15 +76,6 @@ export const FormInner = styled.div`
 
   margin-top: 42px;
   margin-left: 2px;
-
-
-
-`;
-export const ProductContainer = styled.div`
-  margin-bottom: 20px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #f6f6f6;
 `;
 
 export const ButtonsRow = styled.div`
@@ -573,12 +564,53 @@ export const PacientName = styled.input`
 `;
 
 
-export const ProductCard = styled.div`
+// export const ProductCard = styled.div`
+//   background-color: transparent;
+
+//   margin-top: 6px;
+// `
+
+export const ProductCard = styled.div<{
+  $isDragging?: boolean;
+  $isDragOver?: boolean;
+}>`
+  position: relative;
+  border-radius: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  ${({ $isDragging }) =>
+    $isDragging &&
+    css`
+      opacity: 0.4;
+      transform: scale(0.98);
+    `}
+
+  ${({ $isDragOver }) =>
+    $isDragOver &&
+    css`
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.black};
+    `}
+
   background-color: transparent;
 
   margin-top: 6px;
-`
+`;
 
+export const ProductDragHandle = styled.div`
+  position: absolute;
+
+  top: 3px;
+  right: -12px;
+
+  cursor: grab;
+  user-select: none;
+  font-size: 18px;
+  opacity: 0.6;
+
+  &:active {
+    cursor: grabbing;
+  }
+`;
 
 export const ProductList = styled.div`
   display: flex;

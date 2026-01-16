@@ -75,7 +75,7 @@ export default function PrescriptionGroup({
   const saveEditedPrescription = async (updated: ResolvedPrescription) => {
     try {
       // 1) Upsert client
-      const clientRes = await fetch('/Api/Clients', {
+      const clientRes = await fetch('/api/clients', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ client: updated.client }),
@@ -93,7 +93,7 @@ export default function PrescriptionGroup({
       });
 
       // 3) Upsert prescription
-      const presRes = await fetch('/Api/Prescriptions', {
+      const presRes = await fetch('/api/prescriptions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

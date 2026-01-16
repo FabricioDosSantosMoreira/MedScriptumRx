@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import { ClientData } from '@/types/PrescriptionData';
-import { getDateTimedFormated } from '@/lib/utils/utils';
+import { ClientData } from '@/types/Index';
+import { getDateTimeFormated } from '@/lib/utils/utils';
 
 const clientsDataPath = path.join(
   process.cwd(),
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
       }
 
       if (!updatedC.createdAt) {
-        updatedC.createdAt = getDateTimedFormated();
+        updatedC.createdAt = getDateTimeFormated();
         updated = true;
       }
 
@@ -95,18 +95,22 @@ export async function POST(request: Request) {
     // upsert
     const existingIndex = client.uniqueID ? clients.findIndex((c: any) => c.uniqueID === client.uniqueID) : -1;
 
-    const now = getDateTimedFormated();
+    const now = getDateTimeFormated();
 
     if (existingIndex === -1) {
       // create
+      // Update POST handler to include also_known_by:
       const newClient = {
         uniqueID: client.uniqueID ?? uuidv4(),
         name: client.name ?? '',
         address: client.address ?? '',
         observations: Array.isArray(client.observations) ? client.observations : [],
+        also_known_by: Array.isArray(client.also_known_by) ? client.also_known_by : [],
         createdAt: client.createdAt ?? now,
         isActive: typeof client.isActive === 'boolean' ? client.isActive : true,
       };
+
+
       clients.push(newClient);
       fs.writeFileSync(clientsDataPath, JSON.stringify(clients, null, 2));
       return NextResponse.json(newClient);
@@ -127,3 +131,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Failed to upsert client' }, { status: 500 });
   }
 }
+
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const uniqueID = searchParams.get('uniqueID');
+    if (!uniqueID) {
+      return NextResponse.json({ error: 'Missing uniqueID' }, { status: 400 });
+    }
+    const raw = fs.readFileSync(clientsDataPath, 'utf-8');
+    let clients: ClientData[] = JSON.parse(raw);
+    clients = clients.filter(c => c.uniqueID !== uniqueID);
+    fs.writeFileSync(clientsDataPath, JSON.stringify(clients, null, 2));
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ error: 'Failed to delete client' }, { status: 500 });
+  }
+}
+

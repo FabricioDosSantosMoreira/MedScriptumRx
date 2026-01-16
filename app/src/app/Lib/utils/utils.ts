@@ -1,4 +1,4 @@
-import { ClientData, PrescriptionData, ResolvedPrescription } from '@/types/PrescriptionData';
+import { ClientData, PrescriptionData, ResolvedPrescription } from '@/types/Index';
 
 
 export function formatDate(): string {
@@ -11,7 +11,7 @@ export function formatDate(): string {
   return `${year}-${month}-${day}`;
 }
 
-export function getDateTimedFormated(timezone: string = 'BRT'): string {
+export function getDateTimeFormated(timezone: string = 'BRT'): string {
   const date = new Date();
 
   // TimeZome Map
@@ -34,7 +34,7 @@ export function getDateTimedFormated(timezone: string = 'BRT'): string {
 
 export async function loadPrescriptions(isActive: boolean): Promise<PrescriptionData[]> {
   const res = await fetch(
-    `/Api/Prescriptions?is_active=${isActive}`,
+    `/api/prescriptions?is_active=${isActive}`,
     { method: 'GET' }
   );
 
@@ -47,7 +47,7 @@ export async function loadPrescriptions(isActive: boolean): Promise<Prescription
 
 export async function loadClients(isActive: boolean): Promise<ClientData[]> {
   const res = await fetch(
-    `/Api/Clients?is_active=${isActive}`,
+    `/api/clients?is_active=${isActive}`,
     { method: 'GET' }
   );
 

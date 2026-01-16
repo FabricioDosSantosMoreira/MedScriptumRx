@@ -2,14 +2,13 @@
 
 import React, { useRef, useState } from 'react';
 
-import { ResolvedPrescription, ClientData, ProductData } from '@/types/PrescriptionData';
+import { ResolvedPrescription, ClientData, ProductData } from '@/types/Index';
 
 import {
   Overlay,
   ButtonsRow,
   CancelButton,
   Modal,
-  ProductContainer,
   SaveButton,
   FormContainer,
   FormInner,
@@ -51,7 +50,8 @@ import {
   HistoryIconLabel,
   HistoryIconStyleContainer,
   PaperIconStyleContainer,
-  PaperIconLabel
+  PaperIconLabel,
+  ProductDragHandle
 } from './EditPrescriptionModal.styles';
 
 import Scrollbar from '@/components/Layouts/ScrollbarY/ScrollbarY';
@@ -68,6 +68,44 @@ export default function EditPrescriptionModal({
 }) {
 
   const [form, setForm] = useState<ResolvedPrescription>(prescription);
+
+  const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+
+  function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  }
+
+  const handleDragStart = (index: number) => {
+    setDraggingIndex(index);
+  };
+
+  const handleDragEnter = (index: number) => {
+    if (index !== draggingIndex) {
+      setDragOverIndex(index);
+    }
+  };
+
+  const handleDragEnd = () => {
+    setDraggingIndex(null);
+    setDragOverIndex(null);
+  };
+
+  const handleDrop = (index: number) => {
+    if (draggingIndex === null || draggingIndex === index) return;
+
+    setForm(prev => ({
+      ...prev,
+      products: reorder(prev.products, draggingIndex, index)
+    }));
+
+    setDraggingIndex(null);
+    setDragOverIndex(null);
+  };
+
 
   // -------------------------
   // UPDATE HELPERS
@@ -166,18 +204,29 @@ export default function EditPrescriptionModal({
 
                 <ProductList>
                   {form.products.map((product, idx) => (
-                    <ProductCard key={idx}>
+                 
+                    <ProductCard
+                      key={idx}
+                      draggable
+                      $isDragging={draggingIndex === idx}
+                      $isDragOver={dragOverIndex === idx}
+                      onDragStart={() => handleDragStart(idx)}
+                      onDragEnter={() => handleDragEnter(idx)}
+                      onDragOver={(e) => e.preventDefault()}
+                      onDrop={() => handleDrop(idx)}
+                      onDragEnd={handleDragEnd}
+                    >
+                      <ProductDragHandle>
+                        ⋮⋮
+                      </ProductDragHandle>
 
-                      <ProductSpan>
-                        <ProductIcon>
-                          <ProductIconStyles />
-                        </ProductIcon>
-
-                        <ProductName
-                          $isNameLong={product.name.length >= 62}
-                          value={product.name}
-                          onChange={(e) => updateProduct(idx, 'name', e.target.value)}
-                        />
+                      <ProductSpan> 
+                        <ProductIcon> 
+                          <ProductIconStyles /> 
+                        </ProductIcon> 
+                        
+                        <ProductName $isNameLong={product.name.length >= 62} value={product.name} onChange={(e) => updateProduct(idx, 'name', e.target.value)} /> 
+                        
                       </ProductSpan>
 
                       {(product.whyToUse?.length ?? 0) > 0 && (

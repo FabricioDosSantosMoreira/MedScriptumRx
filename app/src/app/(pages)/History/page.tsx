@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 import { loadPrescriptions, loadClients } from '@/lib/utils/utils';
-import { PrescriptionData, ClientData } from '@/types/PrescriptionData';
+import { PrescriptionData, ClientData } from '@/app/Types/Index';
 import { ResolvedPrescription } from '@/types/PrescriptionData';
 
 import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';

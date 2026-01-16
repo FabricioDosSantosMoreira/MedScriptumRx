@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { loadPrescriptions, loadClients, resolvePrescriptions } from '@/lib/utils/utils';
-import { ClientData, PrescriptionData, ResolvedPrescription } from '@/app/Types/PrescriptionData';
+import { ClientData, PrescriptionData, ResolvedPrescription } from '@/types/Index';
 import { PageContainer } from './page.styles';
 
 import PrescriptionSheet from '@/components/PrescriptionSheet/PrescriptionSheet';
