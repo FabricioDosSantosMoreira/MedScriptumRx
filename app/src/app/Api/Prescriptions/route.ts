@@ -220,6 +220,10 @@ export async function POST(request: Request) {
   const prescription = await request.json();
   const prescriptions = readPrescriptions();
   
+
+  console.log('Received prescription:', prescription);
+  console.log('Current prescriptions:', prescriptions);
+
   const now = new Date().toISOString();
 
   // Create a new prescription object
@@ -256,7 +260,7 @@ export async function POST(request: Request) {
   }
 
   prescriptions.push(newPrescription);
-  savePrescriptions(prescription);
+  savePrescriptions(prescriptions);
   
   return NextResponse.json(newPrescription, { status: 201 });
 }
