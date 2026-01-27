@@ -4,18 +4,37 @@ type CreateUpdatePayload = Omit<ProductData, 'uniqueID' | 'createdAt' | 'updated
 
 const API_BASE: string = '/Api/Products';
 
+
+type ApiResponse<T> = {
+  success: boolean;
+  data?: T;
+  message?: string;
+};
+
+
 async function handleResponse<T>(res: Response): Promise<T> {
-  const text = await res.text();
-  const data = text ? JSON.parse(text) : null;
-  if (!res.ok) {
-    const message = data?.message || res.statusText || 'Erro na requisição';
-    throw new Error(message);
+  let json: ApiResponse<T>;
+
+  try {
+    json = await res.json();
+  } catch {
+    throw new Error('Invalid server response');
   }
-  return data as T;
+
+  if (!res.ok || !json.success) {
+    throw new Error(json.message || res.statusText || 'Erro na requisição');
+  }
+
+  if (json.data === undefined) {
+    throw new Error('Empty response from server');
+  }
+
+  return json.data;
 }
 
+
 export async function fetchProducts(): Promise<ProductData[]> {
-  const res = await fetch(`${API_BASE}`, { method: 'GET' });
+  const res = await fetch(API_BASE, { method: 'GET' });
   return handleResponse<ProductData[]>(res);
 }
 
