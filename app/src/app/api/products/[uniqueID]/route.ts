@@ -3,11 +3,16 @@ import { NextResponse } from 'next/server';
 import { readProducts, saveProducts } from '../route';
 
 
-export async function PUT(request: Request, { params }: { params: { uniqueID: string } }) {
+export async function PUT(
+  request: Request,
+  context: { params: Promise<{ uniqueID: string }> }
+) {
+  const { uniqueID } = await context.params;
   const updates = await request.json();
+
   const products = readProducts();
 
-  const index = products.findIndex(p => p.uniqueID === params.uniqueID);
+  const index = products.findIndex(p => p.uniqueID === uniqueID);
 
   if (index === -1) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 });
@@ -18,10 +23,11 @@ export async function PUT(request: Request, { params }: { params: { uniqueID: st
   products[index] = {
     ...products[index],
     ...updates,
-    uniqueID: params.uniqueID,
+    uniqueID,
     createdAt: products[index].createdAt,
     updatedAt: now,
   };
+
   saveProducts(products);
 
   return NextResponse.json(products[index]);

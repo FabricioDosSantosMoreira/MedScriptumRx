@@ -18,8 +18,8 @@ export type ResolvedProductData = ProductData & {
 
 export type PrescriptionData = {
   uniqueID: string;
-
-  client: ClientData;
+  clientUniqueID: string;
+  
   products: ResolvedProductData[];
 
   productsTotalCost: number;
