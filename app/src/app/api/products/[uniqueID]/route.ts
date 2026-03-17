@@ -60,6 +60,21 @@ export async function PUT(request: Request, context: { params: Promise<{ uniqueI
 
     const sanitizedBody = body as ProductUpdatePayload;
 
+    console.log(sanitizedBody.discountedPrice)
+    if (sanitizedBody.originalPrice !== undefined) {
+      sanitizedBody.originalPrice = Number(Number(sanitizedBody.originalPrice).toFixed(2));
+    }
+
+    if (sanitizedBody.discountedPrice !== undefined) {
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      sanitizedBody.discountedPrice = Number(Number(sanitizedBody.discountedPrice).toFixed(2));
+      console.log(sanitizedBody.discountedPrice)
+    }
+
+    if (sanitizedBody.discountPercentage !== undefined) {
+      sanitizedBody.discountPercentage = Number(Number(sanitizedBody.discountPercentage).toFixed(2));
+    }
+
     products[index] = {
       ...products[index],
       ...sanitizedBody as ProductData,

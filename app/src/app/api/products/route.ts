@@ -66,16 +66,15 @@ export async function POST(request: Request) {
     const sanitizedBody = body as ProductCreatePayload;
 
     // Calculate discountedPrice safely
-    sanitizedBody.originalPrice = sanitizedBody.originalPrice ?? 0;
-    sanitizedBody.discountedPrice = sanitizedBody.discountedPrice ?? 0
-    sanitizedBody.discountPercentage = sanitizedBody.discountPercentage ?? 0
+    sanitizedBody.originalPrice      = Number(sanitizedBody.originalPrice).toFixed(2) ?? 0;
+    sanitizedBody.discountedPrice    = Number(sanitizedBody.discountedPrice).toFixed(2) ?? 0
+    sanitizedBody.discountPercentage = Number(sanitizedBody.discountPercentage).toFixed(2) ?? 0
 
     const discountedPrice =
       sanitizedBody.discountedPrice && sanitizedBody.discountedPrice > 0
         ? sanitizedBody.discountedPrice
         : sanitizedBody.originalPrice -
           sanitizedBody.originalPrice * (sanitizedBody.discountPercentage / 100);
-
 
     const newProduct: ProductData = {
       ...sanitizedBody as Partial<ProductData>,
