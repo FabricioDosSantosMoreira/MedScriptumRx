@@ -33,6 +33,7 @@ import { ProductModalProps } from './EditProductModal.types';
 
 const emptyForm = (): Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'> => ({
   name:                '',
+  category:            '',
   defaultWhyToUse:     [''],
   defaultHowToUse:     '',
   defaultObservation:  '',
@@ -58,6 +59,7 @@ export default function EditProductModal({ show, product, onClose, onSaved, onDe
     if (product) {
       setForm({
         name:                product.name                ?? '',
+        category:            product.category            ?? '',
         defaultWhyToUse:     product.defaultWhyToUse     ?? [''],
         defaultHowToUse:     product.defaultHowToUse     ?? '',
         defaultObservation:  product.defaultObservation  ?? '',
@@ -167,7 +169,8 @@ export default function EditProductModal({ show, product, onClose, onSaved, onDe
                 <SmallButton type="button" onClick={() => addArrayField('defaultWhyToUse', '')}>Adicionar motivo</SmallButton>
               </List>
             </Field>
-
+            
+            
             <Field>
               <span>Como usar</span>
               <Textarea value={form.defaultHowToUse} onChange={e => updateField('defaultHowToUse', e.target.value)} />
@@ -190,6 +193,12 @@ export default function EditProductModal({ show, product, onClose, onSaved, onDe
               <Textarea value={form.defaultPresentation} onChange={e => updateField('defaultPresentation', e.target.value)} required />
             </Field>
 
+            
+            <Field>
+              <span>Categoria</span>
+              <Textarea value={form.category} onChange={e => updateField('category', e.target.value)} required/>
+            </Field>
+            
             <Field>
               <span>Preço cheio</span>
               <NumberInput step="0.01" value={form.originalPrice === 0 ? '' : form.originalPrice} onChange={e => updateField('originalPrice', Number(e.target.value))} required/>
