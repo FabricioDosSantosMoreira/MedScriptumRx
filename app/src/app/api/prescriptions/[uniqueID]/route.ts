@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { readPrescriptions, savePrescriptions } from '../route';
 
-import { PrescriptionData, ResolvedProductData } from '@/app/Lib/utils/prescriptions';
+import { PrescriptionData, ResolvedProductData } from '@/types/Index';
 
 
 export async function PUT(
@@ -84,16 +84,6 @@ export async function PUT(
 
   return NextResponse.json(updated);
 }
-
-// export async function DELETE({ params }: { params: { uniqueID: string } }) {
-//   const id = params.uniqueID;
-//   const index = prescriptions.findIndex(p => p.uniqueID === id);
-//   if (index === -1) {
-//     return NextResponse.json({ message: 'Prescription not found' }, { status: 404 });
-//   }
-//   prescriptions.splice(index, 1);
-//   return NextResponse.json({ message: 'Prescription deleted' });
-// }
 
 export async function DELETE(_: Request, { params }: { params: { uniqueID: string } }) {
   const prescriptions = readPrescriptions().filter(p => p.uniqueID !== params.uniqueID);
