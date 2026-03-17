@@ -1,5 +1,5 @@
-import { ResolvedPrescription } from '@/types/PrescriptionData';
+import { ResolvedPrescription } from '@/app/Types/ResolvedPrescription';
 
 export type PrescriptionSheetProps = {
-  data: ResolvedPrescription;
+  resolvedPrescription: ResolvedPrescription;
 };

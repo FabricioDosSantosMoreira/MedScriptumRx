@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { ProductData } from '@/types/ProductData';
-import { createProduct, updateProduct, deleteProduct } from '@/lib/utils/products';
+import { useArrayField } from '@/hooks/useArrayField';
+import { createProduct, updateProduct, deleteProduct } from '@/lib/utils/product';
 
-import { ProductModalProps } from './ProductModal.types';
 import {
   Overlay,
   Modal,
@@ -24,46 +24,50 @@ import {
   PrimaryButton,
   GhostButton,
   DangerButton,
-  WhyList,
-  WhyItem,
+  List,
+  ListItem,
   SmallButton
-} from './ProductModal.styles';
+} from './EditProductModal.styles';
+import { ProductModalProps } from './EditProductModal.types';
 
 
 const emptyForm = (): Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'> => ({
-  name: '',
-  defaultWhyToUse: [''],
-  defaultHowToUse: '',
-  defaultObservation: '',
-  defaultAlert: '',
+  name:                '',
+  defaultWhyToUse:     [''],
+  defaultHowToUse:     '',
+  defaultObservation:  '',
+  defaultAlert:        '',
   defaultPresentation: '',
-  originalPrice: 0.0,
-  discountedPrice: 0.0,
-  discountPercentage: 0,
-  isActive: true,
-  internalSystemID: '',
+  originalPrice:       0.0,
+  discountedPrice:     0.0,
+  discountPercentage:  0,
+  isActive:            true,
+  internalSystemID:    '',
 });
 
-export default function ProductModal({ show, product, onClose, onSaved, onDeleted }: ProductModalProps) {
+
+export default function EditProductModal({ show, product, onClose, onSaved, onDeleted }: ProductModalProps) {
   const [form, setForm] = useState<Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'>>(emptyForm());
+
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Loads default values to ProductForm fields
   useEffect(() => {
     if (product) {
       setForm({
-        name: product.name ?? '',
-        defaultWhyToUse: (product.defaultWhyToUse && product.defaultWhyToUse.length > 0) ? product.defaultWhyToUse : [''],
-        defaultHowToUse: product.defaultHowToUse ?? '',
-        defaultObservation: product.defaultObservation ?? '',
-        defaultAlert: product.defaultAlert ?? '',
+        name:                product.name                ?? '',
+        defaultWhyToUse:     product.defaultWhyToUse     ?? [''],
+        defaultHowToUse:     product.defaultHowToUse     ?? '',
+        defaultObservation:  product.defaultObservation  ?? '',
+        defaultAlert:        product.defaultAlert        ?? '',
         defaultPresentation: product.defaultPresentation ?? '',
-        originalPrice: product.originalPrice ?? 0,
-        discountedPrice: product.discountedPrice ?? 0,
-        discountPercentage: product.discountPercentage ?? 0,
-        isActive: product.isActive ?? true,
-        internalSystemID: product.internalSystemID ?? ''
+        originalPrice:       product.originalPrice       ?? 0,
+        discountedPrice:     product.discountedPrice     ?? 0,
+        discountPercentage:  product.discountPercentage  ?? 0,
+        isActive:            product.isActive            ?? true,
+        internalSystemID:    product.internalSystemID    ?? ''
       });
     } else {
       setForm(emptyForm());
@@ -71,47 +75,41 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
     setError(null);
   }, [product, show]);
 
+
+
+  // Generics to change ProductForm fields
   function updateField<K extends keyof typeof form>(field: K, value: typeof form[K]) {
     setForm(prev => ({ ...prev, [field]: value }));
   }
+  const { updateArrayField, addArrayField, removeArrayField } = useArrayField(form, setForm);
 
-  function updateWhy(index: number, value: string) {
-    const arr = [...form.defaultWhyToUse];
-    arr[index] = value;
-    updateField('defaultWhyToUse', arr);
-  }
-
-  function addWhy() {
-    updateField('defaultWhyToUse', [...form.defaultWhyToUse, '']);
-  }
-
-  function removeWhy(idx: number) {
-    const arr = form.defaultWhyToUse.filter((_, i) => i !== idx);
-    updateField('defaultWhyToUse', arr.length ? arr : ['']);
-  }
 
   async function handleSave(e?: React.FormEvent) {
     if (e) e.preventDefault();
     setSaving(true);
     setError(null);
+
     try {
       const payload = { ...form };
-      // normalize blank why entries
+
+      // Normalize blank entries
       payload.defaultWhyToUse = payload.defaultWhyToUse.map(w => w.trim()).filter(w => w !== '');
+
       let saved: ProductData;
       let response: any;
+
+      // We either update or create the Client here
       if (product && (product.uniqueID)) {
         response = await updateProduct(product.uniqueID, payload as any);
       } else {
         response = await createProduct(payload as any);
       }
 
-      console.log(response);
       saved = response;  
       onSaved(saved);
       onClose();
     } catch (err: any) {
-      setError(err?.message || err?.error || 'Erro ao salvar produto');
+      setError(`Erro ao salvar produto -> ${err?.message || err?.error}`);
     } finally {
       setSaving(false);
     }
@@ -119,15 +117,16 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
 
   async function handleDelete() {
     if (!product?.uniqueID) return;
-    if (!confirm('Deseja excluir este produto? Essa ação é irreversível.')) return;
+    if (!confirm('Deseja excluir este produto? Essa ação é irreversível...')) return;
     setDeleting(true);
     setError(null);
+
     try {
       await deleteProduct(product.uniqueID);
       if (onDeleted) onDeleted(product.uniqueID);
       onClose();
     } catch (err: any) {
-      setError(err?.message || 'Erro ao excluir produto');
+      setError(`Erro ao excluir produto -> ${err.message || err?.error}`);
     } finally {
       setDeleting(false);
     }
@@ -158,15 +157,15 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
 
             <Field>
               <span>Por que usar (lista)</span>
-              <WhyList>
+              <List>
                 {form.defaultWhyToUse.map((w, idx) => (
-                  <WhyItem key={idx}>
-                    <Input value={w} onChange={e => updateWhy(idx, e.target.value)} />
-                    <SmallButton type="button" onClick={() => removeWhy(idx)}>Remover</SmallButton>
-                  </WhyItem>
+                  <ListItem key={idx}>
+                    <Input value={w} onChange={e => updateArrayField('defaultWhyToUse', idx, e.target.value)} />
+                    <SmallButton type="button" onClick={() => removeArrayField('defaultWhyToUse', idx, [''])}>Remover</SmallButton>
+                  </ListItem>
                 ))}
-                <SmallButton type="button" onClick={addWhy}>Adicionar motivo</SmallButton>
-              </WhyList>
+                <SmallButton type="button" onClick={() => addArrayField('defaultWhyToUse', '')}>Adicionar motivo</SmallButton>
+              </List>
             </Field>
 
             <Field>
@@ -203,7 +202,7 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
 
             <Field>
               <span>Desconto padrão</span>
-              <NumberInput step="1" value={form.discountPercentage} onChange={e => updateField('discountPercentage', Number(e.target.value))}/>
+              <NumberInput step="1" value={form.discountPercentage === 0 ? '' : form.discountPercentage} onChange={e => updateField('discountPercentage', Number(e.target.value))} required/>
             </Field>
 
             <Field>

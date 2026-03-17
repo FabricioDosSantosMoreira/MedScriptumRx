@@ -1,15 +1,20 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 import { PrescriptionWrapper } from '@/components/A4Sheet/A4Sheet.styles';
-import { getDateFormated } from '@/lib/utils/utils';
+import { getDateFormated } from '@/app/Lib/utils';
 
-import { ResolvedPrescription, PrescriptionData } from '@/types/PrescriptionData';
+import {
+  GroupActionButtons,
+  PrescriptionData,
+  ResolvedPrescription,
+} from '@/app/Types/index';
 
 import PrescriptionSheet from '@/components/PrescriptionSheet/PrescriptionSheet';
 import A4Sheet from '@/components/A4Sheet/A4Sheet';
+import EditPrescriptionModal from '@/components/Modal/EditPrescriptionModal/EditPrescriptionModal';
 
 import {
   PrintableContainer,
@@ -18,170 +23,282 @@ import {
   UpdateButton,
   PrintButton,
   EditButton,
+  SidedButtonsContainer,
+  TopRow,
+  Row,
+  SidePrintButton,
+  SideContainer,
 } from './PrescriptionGroup.styles';
 
-import EditPrescriptionModal from '@/components/EditPrescriptionModal/EditPrescriptionModal';
+import { getPrescriptions } from '@/app/Lib/utils/prescription';
+
+
 
 export default function PrescriptionGroup({
   group,
-  groupId,
   groupActionButtons,
   onDataUpdated,
-  isHistoryData,
 }: {
   group: ResolvedPrescription[];
-  groupId: number;
   groupActionButtons?: GroupActionButtons[];
   onDataUpdated: () => void;
-  isHistoryData: boolean;
 }) {
 
-  const contentRef = React.useRef<HTMLDivElement | null>(null);
+  /* ----------------------------------
+     State
+  ---------------------------------- */
+
+  const [editingPrescription, setEditingPrescription] =
+    useState<PrescriptionData | null>(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Index of prescription to print alone
+  const [singlePrintIndex, setSinglePrintIndex] =
+    useState<number | null>(null);
+
+
+  /* ----------------------------------
+     Refs
+  ---------------------------------- */
+
+  // Print ALL
+  const allPrintRef = useRef<HTMLDivElement | null>(null);
+
+  // Print ONE
+  const singlePrintRef = useRef<HTMLDivElement | null>(null);
+
+
+  /* ----------------------------------
+     Titles
+  ---------------------------------- */
 
   const groupTitle =
     group.length === 1
       ? group[0].client.name
       : group.map(p => p.client.name).join(', ');
 
-  const handlePrint = useReactToPrint({
-    contentRef,
+
+  /* ----------------------------------
+     Print All
+  ---------------------------------- */
+
+  const handlePrintAll = useReactToPrint({
+    contentRef: allPrintRef,
     preserveAfterPrint: true,
-    documentTitle: `[${getDateFormated()}] - Plano ${groupId} - [${groupTitle}]`,
+    documentTitle: `[${getDateFormated()}] - Plano 0000 - [${groupTitle}]`,
   });
 
-  // EDIT MODAL
-  const [editingPrescription, setEditingPrescription] =
-    useState<ResolvedPrescription | null>(null);
 
-  const openEdit = (prescription: ResolvedPrescription) => {
-    // create shallow copy to avoid mutating parent data
-    setEditingPrescription(JSON.parse(JSON.stringify(prescription)));
-  };
+  /* ----------------------------------
+     Print Single
+  ---------------------------------- */
 
-  // helper: convert ResolvedPrescription -> persisted PrescriptionData
-  const toPersistedPrescription = (r: ResolvedPrescription): PrescriptionData => {
-    return {
-      uniqueID: r.uniqueID,
-      clientID: r.client.uniqueID,
-      createdAt: r.createdAt,
-      isActive: r.isActive,
-      isSingle: r.isSingle,
-      products: r.products ?? [],
-      args: r.args ?? {},
-    };
-  };
+  const handlePrintSingle = useReactToPrint({
+    contentRef: singlePrintRef,
+    preserveAfterPrint: true,
+    documentTitle: `[${getDateFormated()}] - Plano 0000 - ${
+      singlePrintIndex !== null
+        ? group[singlePrintIndex]?.client.name
+        : ''
+    }`,
+  });
 
-  // helper: upsert client then upsert prescription
-  const saveEditedPrescription = async (updated: ResolvedPrescription) => {
-    try {
-      // 1) Upsert client
-      const clientRes = await fetch('/Api/Clients', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ client: updated.client }),
-      });
 
-      if (!clientRes.ok) throw new Error('Failed to save client');
+  /* ----------------------------------
+     Auto print when index changes
+  ---------------------------------- */
 
-      const savedClient = await clientRes.json();
-      const clientID = savedClient.uniqueID;
-
-      // 2) Build persisted prescription using returned clientID
-      const persisted = toPersistedPrescription({
-        ...updated,
-        client: { ...updated.client, uniqueID: clientID },
-      });
-
-      // 3) Upsert prescription
-      const presRes = await fetch('/Api/Prescriptions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          uniqueID: persisted.uniqueID,
-          updatedData: persisted,
-        }),
-      });
-
-      if (!presRes.ok) throw new Error('Failed to save prescription');
-
-      // success: reload and close modal
-      onDataUpdated();
-      setEditingPrescription(null);
-    } catch (err) {
-      console.error('Error saving edited prescription:', err);
-      // optionally show toast / alert
+  useEffect(() => {
+    if (singlePrintIndex !== null) {
+      handlePrintSingle();
     }
+  }, [singlePrintIndex, handlePrintSingle]);
+
+
+  /* ----------------------------------
+     Handlers
+  ---------------------------------- */
+
+  const handlePrintSinglePrescription = (index: number) => {
+    setSinglePrintIndex(index);
   };
+
+
+  const handleEdit = (prescription: PrescriptionData) => {
+    setEditingPrescription(prescription);
+    setIsModalOpen(true);
+  };
+
+
+  const handleModalSaved = async () => {
+    setIsModalOpen(false);
+    await getPrescriptions();
+    onDataUpdated();
+  };
+
+
+  const handleModalDeleted = async () => {
+    setIsModalOpen(false);
+    await getPrescriptions();
+    onDataUpdated();
+  };
+
+
+  /* ----------------------------------
+     Buttons
+  ---------------------------------- */
 
   const groupEditButtons = group.map((p) => ({
     buttonName: `Editar ${p.client.name.split(' ')[0]}`,
     buttonType: 'edit' as const,
-    buttonCallbackFunc: () => openEdit(p),
+    buttonCallbackFunc: () => handleEdit(p),
   }));
+
 
   const mergedButtons = [
     ...(groupActionButtons ?? []),
     ...groupEditButtons,
   ];
 
+
+  /* ----------------------------------
+     Render
+  ---------------------------------- */
+
   return (
     <A4SheetsContainer>
 
-      <ButtonsContainer className="no-print">
-        {mergedButtons.map((btn, idx) => {
-          if (btn.buttonType === 'print') {
-            return (
-              <PrintButton key={idx} onClick={handlePrint}>
-                {btn.buttonName}
-              </PrintButton>
-            );
-          }
+      {/* ================= TOP BUTTONS ================= */}
 
-          if (btn.buttonType === 'update') {
-            return (
-              <UpdateButton key={idx} onClick={btn.buttonCallbackFunc}>
-                {btn.buttonName}
-              </UpdateButton>
-            );
-          }
+      <TopRow>
+        <ButtonsContainer className="no-print">
 
-          if (btn.buttonType === 'edit') {
-            return (
-              <EditButton key={idx} onClick={btn.buttonCallbackFunc}>
-                {btn.buttonName}
-              </EditButton>
-            );
-          }
+          {mergedButtons.map((btn, idx) => {
 
-          return null;
-        })}
-      </ButtonsContainer>
+            if (btn.buttonType === 'print') {
+              return (
+                <PrintButton key={idx} onClick={handlePrintAll}>
+                  {btn.buttonName}
+                </PrintButton>
+              );
+            }
 
-      <PrintableContainer ref={contentRef}>
-        <A4Sheet
-          orientation="landscape"
-          padding="24px"
-          gap="12px"
-          justifyContent={group.length <= 1 ? 'flex-start' : 'center'}
-        >
-          {group.map((p, idx) => (
-            <PrescriptionWrapper
-              key={p.uniqueID}
-              $orientation="landscape"
-              $idx={idx + 1}
+            if (btn.buttonType === 'update') {
+              return (
+                <UpdateButton key={idx} onClick={btn.buttonCallbackFunc}>
+                  {btn.buttonName}
+                </UpdateButton>
+              );
+            }
+
+            if (btn.buttonType === 'edit') {
+              return (
+                <EditButton key={idx} onClick={btn.buttonCallbackFunc}>
+                  {btn.buttonName}
+                </EditButton>
+              );
+            }
+
+            return null;
+          })}
+
+        </ButtonsContainer>
+      </TopRow>
+
+
+      {/* ================= MAIN CONTENT ================= */}
+
+      <Row>
+
+        {/* SIDE PRINT BUTTONS */}
+
+        <SideContainer>
+          <SidedButtonsContainer>
+
+            {group.map((_, idx) => (
+              <SidePrintButton
+                key={idx}
+                onClick={() => handlePrintSinglePrescription(idx)}
+              >
+                🖨️
+              </SidePrintButton>
+            ))}
+
+          </SidedButtonsContainer>
+        </SideContainer>
+
+
+        {/* PRINT ALL CONTAINER */}
+
+        <PrintableContainer ref={allPrintRef}>
+          <A4Sheet
+            orientation="landscape"
+            padding="24px"
+            gap="12px"
+            justifyContent={
+              group.length <= 1 ? 'flex-start' : 'center'
+            }
+          >
+
+            {group.map((p, idx) => (
+              <PrescriptionWrapper
+                key={p.uniqueID}
+                $orientation="landscape"
+                $idx={idx + 1}
+              >
+                <PrescriptionSheet resolvedPrescription={p} />
+              </PrescriptionWrapper>
+            ))}
+
+          </A4Sheet>
+        </PrintableContainer>
+
+      </Row>
+
+
+      {/* ================= HIDDEN SINGLE PRINT ================= */}
+
+      <div style={{ display: 'none' }}>
+
+        {singlePrintIndex !== null && (
+          <PrintableContainer ref={singlePrintRef}>
+
+            <A4Sheet
+              orientation="landscape"
+              padding="24px"
+              gap="12px"
+              justifyContent="flex-start"
             >
-              <PrescriptionSheet data={p} />
-            </PrescriptionWrapper>
-          ))}
-        </A4Sheet>
-      </PrintableContainer>
 
-      {/* MODAL */}
-      {editingPrescription && (
+              <PrescriptionWrapper
+                $orientation="landscape"
+                $idx={1}
+              >
+                <PrescriptionSheet
+                  resolvedPrescription={
+                    group[singlePrintIndex]
+                  }
+                />
+              </PrescriptionWrapper>
+
+            </A4Sheet>
+
+          </PrintableContainer>
+        )}
+
+      </div>
+
+
+      {/* ================= MODAL ================= */}
+
+      {isModalOpen && (
         <EditPrescriptionModal
-          prescription={editingPrescription}
-          onClose={() => setEditingPrescription(null)}
-          onSave={saveEditedPrescription}
+          show={isModalOpen}
+          prescription={editingPrescription ?? undefined}
+          onClose={() => setIsModalOpen(false)}
+          onSaved={handleModalSaved}
+          onDeleted={handleModalDeleted}
         />
       )}
 

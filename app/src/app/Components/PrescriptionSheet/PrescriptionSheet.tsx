@@ -44,9 +44,11 @@ import MedicineIcon6 from '@/public/images/icons/icon-medicine-6.png';
 import WhatsAppIcon from '@/public/images/icons/icon-whatsapp.png';
 import MapIcon from '@/public/images/icons/icon-map.png';
 import { PrescriptionArgs, ProductArgs } from '@/app/Types/PrescriptionData';
+import { ResolvedProductData } from '@/types/ResolvedProductData';
 
 
-export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
+
+export default function PrescriptionSheet({ resolvedPrescription }: PrescriptionSheetProps) {
 
   const defaultPrescriptionArgs: PrescriptionArgs = {
     useNameIcon: true,
@@ -60,10 +62,12 @@ export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
   };
 
   // Merge defaults with provided args
-  const _prescriptionArgs: PrescriptionArgs = { ...defaultPrescriptionArgs, ...data?.args };
+  const _prescriptionArgs: PrescriptionArgs = {
+    ...defaultPrescriptionArgs,
+    ...resolvedPrescription.args,
+  };
 
-  // console.log(data);
-  // console.log(_prescriptionArgs);
+ 
   
   return (
     <PrescriptionContainer>
@@ -108,16 +112,19 @@ export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
               <PacientIconStyles />
             </PacientIcon>
           )}
-          <PacientName>{data.client.name}</PacientName>
+          <PacientName>{resolvedPrescription.client.name}</PacientName>
         </PacientSpan>
 
         {/* List of Products */}
         <ProductList>
-        {data.products.map((product, idx) => {
+        {resolvedPrescription.products.map((product, idx) => {
 
           // Merge defaults with provided args
-          const productArgs: ProductArgs = { ...defaulProductArgs, ...product.args };
-          
+          const productArgs: ProductArgs = {
+            ...defaulProductArgs,
+            ...product.args,
+          };
+
           return (
             <ProductCard key={idx}>
 
@@ -132,9 +139,9 @@ export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
 
               <ProductWhyToUseContainer>
                 {product.whyToUse
-                  .filter((reason) => reason.toString().trim() !== "")
-                  .map((reason, idx) => (
-                    <WhyToUseList key={idx}>
+                  // .filter(r => r.trim() !== '')
+                  .map((reason, i) => (
+                    <WhyToUseList key={i}>
                       {productArgs.useListIcon && (
                         <WhyToUseIconStyleContainer>
                           <WhyToUseIconStyles />
@@ -146,34 +153,49 @@ export default function PrescriptionSheet({ data }: PrescriptionSheetProps) {
                   ))}
               </ProductWhyToUseContainer>
 
-              <ProductHowToUseContainer $isStringTooLong={product.howToUse.length > 108}>
-                {productArgs.useCalendarIcon && ( 
+              <ProductHowToUseContainer
+                $isStringTooLong={product.howToUse.length > 108}
+              >
+                {productArgs.useCalendarIcon && (
                   <CalendarIconContainer>
-                    <CalendarIconStyle $isStringTooLong={product.howToUse.length > 108}>
-                    <CalendarIconStyle $isHeader />
-                    <CalendarIconStyle $isHandler $pos={'0px'} />
-                    <CalendarIconStyle $isHandler $pos={'6.5px'} />
-                    <CalendarIconStyle $isHandler $pos={'13px'} />
-                    <CalendarIconStyle $bottomDates />
-                    <CalendarIconStyle $topDates />
+                    <CalendarIconStyle
+                      $isStringTooLong={product.howToUse.length > 108}
+                    >
+                      <CalendarIconStyle $isHeader />
+                      <CalendarIconStyle $isHandler $pos={'0px'} />
+                      <CalendarIconStyle $isHandler $pos={'6.5px'} />
+                      <CalendarIconStyle $isHandler $pos={'13px'} />
+                      <CalendarIconStyle $bottomDates />
+                      <CalendarIconStyle $topDates />
                     </CalendarIconStyle>
                   </CalendarIconContainer>
                 )}
-                <ProductHowToUse>{product.howToUse}</ProductHowToUse>
+
+                <ProductHowToUse>
+                  {product.howToUse}
+                </ProductHowToUse>
               </ProductHowToUseContainer>
 
-              {product.observation && productArgs.useObservationIcon && (
-                <ProductObservation><strong>OBS: </strong>{product.observation}</ProductObservation>
-              )}
+              {product.observation &&
+                productArgs.useObservationIcon && (
+                  <ProductObservation>
+                    <strong>OBS: </strong>
+                    {product.observation}
+                  </ProductObservation>
+                )}
 
-              {product.alert && productArgs.useAlertIcon && (
-                <ProductAlertContainer $isStringTooLong={product.alert.length > 110}>
-                  <ProductAlertIconContainer>
-                    <ProductAlertIconStyles />
-                  </ProductAlertIconContainer>
-                  <ProductAlert>{product.alert}</ProductAlert>
-                </ProductAlertContainer>
-              )}
+              {product.alert &&
+                productArgs.useAlertIcon && (
+                  <ProductAlertContainer
+                    $isStringTooLong={product.alert.length > 110}
+                  >
+                    <ProductAlertIconContainer>
+                      <ProductAlertIconStyles />
+                    </ProductAlertIconContainer>
+
+                    <ProductAlert>{product.alert}</ProductAlert>
+                  </ProductAlertContainer>
+                )}
             </ProductCard>
           )
         }

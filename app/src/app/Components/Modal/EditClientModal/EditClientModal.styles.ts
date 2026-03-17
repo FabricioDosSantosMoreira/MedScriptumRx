@@ -140,13 +140,13 @@ export const DangerButton = styled.button`
   cursor: pointer;
 `;
 
-export const WhyList = styled.div`
+export const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
 `;
 
-export const WhyItem = styled.div`
+export const ListItem = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
