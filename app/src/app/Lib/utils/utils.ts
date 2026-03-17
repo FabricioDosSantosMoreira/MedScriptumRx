@@ -49,7 +49,7 @@ export function getDateTimeFormated(timezone: string = 'BRT'): string {
 
 export async function loadPrescriptions(isActive: boolean): Promise<PrescriptionData[]> {
   const res = await fetch(
-    `/Api/Prescriptions?is_active=${isActive}`,
+    `/api/prescriptions?is_active=${isActive}`,
     { method: 'GET' }
   );
 
@@ -62,7 +62,7 @@ export async function loadPrescriptions(isActive: boolean): Promise<Prescription
 
 export async function loadClients(isActive: boolean): Promise<ClientData[]> {
   const res = await fetch(
-    `/Api/Clients?is_active=${isActive}`,
+    `/api/clients?is_active=${isActive}`,
     { method: 'GET' }
   );
 
