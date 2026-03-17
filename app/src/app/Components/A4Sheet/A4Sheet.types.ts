@@ -18,5 +18,4 @@ export type A4SheetProps = {
   gap?: string
 
   justifyContent?: "center" | "flex-start"
-  alignItems?: "center" | "flex-start"
 };
