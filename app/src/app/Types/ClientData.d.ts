@@ -1,12 +1,13 @@
 export type ClientData = {
-  name: string;           
-  also_known_by: string[];
+  name:     string;       
+  uniqueID: string;
 
-  address: string;
+  address:      string;
+  alsoKnownBy:  string[];
   observations: string[];
-
-  uniqueID: string;  // UUID4
+  
   createdAt: string;
+  updatedAt: string;
   
   isActive: boolean;
 }

@@ -16,6 +16,6 @@ export type ProductData = {
   updatedAt: string;
   
   isActive: boolean;
-
+  
   internalSystemID: string; // The Internal PDV ID
 }
