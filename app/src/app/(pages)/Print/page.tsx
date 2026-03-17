@@ -37,14 +37,7 @@ export default function Page() {
       const resolved = resolvePrescriptions(
         filteredPrescriptions as PrescriptionData[],
         clients as ClientData[]
-      ).map(prescription => ({
-        ...prescription,
-
-      // Sort products by name length (DESC)
-      products: [...prescription.products].sort(
-        (a, b) => b.name.length - a.name.length
-      ),
-      }));
+      );
 
       setPrescriptions(resolved);
     } catch (err: any) {
