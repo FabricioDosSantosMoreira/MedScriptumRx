@@ -13,6 +13,7 @@ export default function A4Sheet({
   outline = true,
   gap = '12px',
   justifyContent = "center",
+  alignItems = "center",
 }: A4SheetProps) {
   return (
       <Sheet
@@ -23,6 +24,7 @@ export default function A4Sheet({
         $outline={outline}
         $gap={gap}
         $justifyContent={justifyContent}
+        $alignItems={alignItems}
       >
         {children}
       </Sheet>
