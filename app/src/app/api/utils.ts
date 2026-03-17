@@ -24,7 +24,8 @@ export function readJSON<T>(filePath: string, defaultValue: T): T {
     ensureJSONFile(filePath, defaultValue);
     return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   } catch (error) {
-    console.error('[ERROR][API][JSON][READ] -> ', error);
+    console.error(`[ERROR][API][JSON][READ] -> ${error}`);
+
     return defaultValue;
   }
 }
@@ -37,7 +38,7 @@ export function writeJSON<T>(filePath: string, data: T) {
     ensureJSONFile(filePath, data);
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   } catch (error) {
-    console.error('[ERROR][API][JSON][WRITE] -> ', error);
+    console.error(`[ERROR][API][JSON][WRITE] -> ${error}`);
     throw new Error('Failed to persist data');
   }
 }

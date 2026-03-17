@@ -23,6 +23,7 @@ export const Sheet = styled.div<{
   $bgColor: string;
   $outline: boolean;
   $justifyContent: string;
+  $alignItems: string;
 }>`
 
   flex-direction: row;
@@ -33,7 +34,7 @@ export const Sheet = styled.div<{
   ${({ $orientation }) => sheetSize($orientation)};
   display: flex;
   justify-content: ${({ $justifyContent }) => $justifyContent};
-  align-items: center;
+  align-items: ${({ $alignItems }) => $alignItems};
   gap: ${({ $gap }) => $gap};
   padding: ${({ $padding }) => $padding};
   box-sizing: border-box;
