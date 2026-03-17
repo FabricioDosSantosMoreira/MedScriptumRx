@@ -1,153 +1,91 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import { ClientData } from '@/types/Index';
-import { getDateTimeFormated } from '@/lib/utils/utils';
+import path from 'path';
 
-const clientsDataPath = path.join(
-  process.cwd(),
-  'public',
-  'data',
-  'clients.json'
-);
+import { readJSON, writeJSON } from '../utils';
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const isActiveParam = searchParams.get('is_active');
+import { ClientData } from '@/app/Types/!Index';
+import { validateNoExtraFields } from '@/lib/utils';
+import { allowedClientDataPropertiesOnChange } from '@/lib/utils/client';
 
+
+export const clientsPath = path.join(process.cwd(), 'public', 'data', 'clients.json');
+
+
+export async function GET() {
   try {
-    const raw = fs.readFileSync(clientsDataPath, 'utf-8');
-    let clients: ClientData[] = JSON.parse(raw);
+    const clients = readJSON<ClientData[]>(clientsPath, []);
 
-    let updated = false;
-
-    clients = clients.map((c) => {
-      const updatedC = { ...c };
-
-      if (!updatedC.uniqueID) {
-        updatedC.uniqueID = uuidv4();
-        updated = true;
-      }
-
-      if (!updatedC.createdAt) {
-        updatedC.createdAt = getDateTimeFormated();
-        updated = true;
-      }
-
-      if (updatedC.isActive === undefined || updatedC.isActive === null) {
-        updatedC.isActive = true;
-        updated = true;
-      }
-
-      return updatedC;
+    return NextResponse.json({
+      success: true,
+      data: clients,
     });
-
-    // 💾 Persiste se houve correções
-    if (updated) {
-      console.warn('[WARN] -> Clients missing fields were auto-filled');
-      fs.writeFileSync(
-        clientsDataPath,
-        JSON.stringify(clients, null, 2)
-      );
-    }
-
-    // 🔎 Filtro por status
-    if (isActiveParam !== null) {
-      const isActive = isActiveParam === 'true';
-      clients = clients.filter(c => c.isActive === isActive);
-    }
-
-    return NextResponse.json(clients);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(`[ERROR][API][CLIENT][GET] -> ${error}`);
     return NextResponse.json(
-      { error: 'Failed to read or update clients' },
+      { success: false, message: `Failed to get clients` },
       { status: 500 }
     );
   }
 }
 
+
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    const { client } = body;
+    let body;
 
-    if (!client) {
-      return NextResponse.json({ error: 'Missing client in body' }, { status: 400 });
-    }
-
-    // read file (create if missing)
-    let fileContent = '[]';
     try {
-      fileContent = fs.readFileSync(clientsDataPath, 'utf-8');
-    } catch (e) {
-      // if file not exist, we'll create it below
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, message: 'Invalid JSON body' },
+        { status: 400 }
+      );
     }
 
-    let clients = [];
-    try {
-      clients = JSON.parse(fileContent);
-    } catch (e) {
-      clients = [];
+    const now = new Date().toISOString();
+    const clients = readJSON<ClientData[]>(clientsPath, []);
+    const result = validateNoExtraFields(body, allowedClientDataPropertiesOnChange);
+
+    if (!result.valid) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Invalid field(s) -> ' + result.invalidFields
+        },
+        { status: 400 }
+      );
     }
 
-    // upsert
-    const existingIndex = client.uniqueID ? clients.findIndex((c: any) => c.uniqueID === client.uniqueID) : -1;
+    type AllowedKeys =
+      typeof allowedClientDataPropertiesOnChange[number];
 
-    const now = getDateTimeFormated();
+    type ClientCreatePayload =
+      Partial<Pick<ClientData, AllowedKeys>> &
+      Record<Exclude<string, AllowedKeys>, never>;
 
-    if (existingIndex === -1) {
-      // create
-      // Update POST handler to include also_known_by:
-      const newClient = {
-        uniqueID: client.uniqueID ?? uuidv4(),
-        name: client.name ?? '',
-        address: client.address ?? '',
-        observations: Array.isArray(client.observations) ? client.observations : [],
-        also_known_by: Array.isArray(client.also_known_by) ? client.also_known_by : [],
-        createdAt: client.createdAt ?? now,
-        isActive: typeof client.isActive === 'boolean' ? client.isActive : true,
-      };
+    const sanitizedBody = body as ClientCreatePayload;
 
+    const newClient: ClientData = {
+      ...sanitizedBody as Partial<ClientData>,
+      createdAt: now,
+      updatedAt: now,
+      isActive: true,
+      uniqueID: uuidv4(),
+    } as ClientData;
 
-      clients.push(newClient);
-      fs.writeFileSync(clientsDataPath, JSON.stringify(clients, null, 2));
-      return NextResponse.json(newClient);
-    } else {
-      // update existing
-      const merged = {
-        ...clients[existingIndex],
-        ...client,
-        uniqueID: clients[existingIndex].uniqueID,
-        createdAt: clients[existingIndex].createdAt ?? now,
-      };
-      clients[existingIndex] = merged;
-      fs.writeFileSync(clientsDataPath, JSON.stringify(clients, null, 2));
-      return NextResponse.json(merged);
-    }
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: 'Failed to upsert client' }, { status: 500 });
+    clients.push(newClient);
+    writeJSON(clientsPath, clients);
+
+    return NextResponse.json(
+      { success: true, data: newClient }, 
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error(`[ERROR][API][CLIENT][POST] -> ${error}`);
+    return NextResponse.json(
+      { success: false, message: `Failed to create a client`},
+      { status: 500 }
+    );
   }
 }
-
-
-export async function DELETE(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const uniqueID = searchParams.get('uniqueID');
-    if (!uniqueID) {
-      return NextResponse.json({ error: 'Missing uniqueID' }, { status: 400 });
-    }
-    const raw = fs.readFileSync(clientsDataPath, 'utf-8');
-    let clients: ClientData[] = JSON.parse(raw);
-    clients = clients.filter(c => c.uniqueID !== uniqueID);
-    fs.writeFileSync(clientsDataPath, JSON.stringify(clients, null, 2));
-    return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ error: 'Failed to delete client' }, { status: 500 });
-  }
-}
-

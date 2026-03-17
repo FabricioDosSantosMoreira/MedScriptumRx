@@ -2,8 +2,11 @@ import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 
-import { ProductData } from '@/types/Index';
 import { readJSON, writeJSON } from '../utils';
+
+import { ProductData } from '@/app/Types/!Index';
+import { validateNoExtraFields } from '@/lib/utils';
+import { allowedProductDataPropertiesOnChange } from '@/lib/utils/product';
 
 
 export const productsPath = path.join(process.cwd(), 'public', 'data', 'products.json');
@@ -17,19 +20,19 @@ export async function GET() {
       data: products,
     });
   } catch (error) {
-    console.error('[ERROR][API][PRODUCT][GET] -> ', error);
+    console.error(`[ERROR][API][PRODUCT][GET] -> ${error}`);
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch products' },
+      { success: false, message: `Failed to get products` },
       { status: 500 }
     );
   }
 }
 
+
 export async function POST(request: Request) {
   try {
-    let body: Partial<ProductData>;
+    let body;
 
-    // Safe JSON parsing
     try {
       body = await request.json();
     } catch {
@@ -39,33 +42,48 @@ export async function POST(request: Request) {
       );
     }
 
-    // Minimal validation
-    // TODO: Real validation
-    if (!body.name || !body.originalPrice) {
+    const now = new Date().toISOString();
+    const products = readJSON<ProductData[]>(productsPath, []);
+    const result = validateNoExtraFields(body, allowedProductDataPropertiesOnChange);
+
+    if (!result.valid) {
       return NextResponse.json(
-        { success: false, message: 'Missing required fields' },
+        {
+          success: false,
+          message: 'Invalid field(s) -> ' + result.invalidFields
+        },
         { status: 400 }
       );
     }
 
-    const products = readJSON<ProductData[]>(productsPath, []);
-    const now = new Date().toISOString();
+    type AllowedKeys =
+      typeof allowedProductDataPropertiesOnChange[number];
+
+    type ProductCreatePayload =
+      Partial<Pick<ProductData, AllowedKeys>> &
+      Record<Exclude<string, AllowedKeys>, never>;
+
+    const sanitizedBody = body as ProductCreatePayload;
 
     // Calculate discountedPrice safely
-    const discountPercentage = body.discountPercentage ?? 0;
+    sanitizedBody.originalPrice = sanitizedBody.originalPrice ?? 0;
+    sanitizedBody.discountedPrice = sanitizedBody.discountedPrice ?? 0
+    sanitizedBody.discountPercentage = sanitizedBody.discountPercentage ?? 0
+
     const discountedPrice =
-      body.discountedPrice && body.discountedPrice > 0
-        ? body.discountedPrice
-        : body.originalPrice -
-          body.originalPrice * (discountPercentage / 100);
+      sanitizedBody.discountedPrice && sanitizedBody.discountedPrice > 0
+        ? sanitizedBody.discountedPrice
+        : sanitizedBody.originalPrice -
+          sanitizedBody.originalPrice * (sanitizedBody.discountPercentage / 100);
+
 
     const newProduct: ProductData = {
-      ...body,
+      ...sanitizedBody as Partial<ProductData>,
       discountedPrice,
-      uniqueID: uuidv4(),
       createdAt: now,
       updatedAt: now,
       isActive: true,
+      uniqueID: uuidv4(),
     } as ProductData;
 
     products.push(newProduct);
@@ -76,9 +94,9 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error('[ERROR][API][PRODUCT][POST] -> ', error);
+    console.error(`[ERROR][API][PRODUCT][POST] -> ${error}`);
     return NextResponse.json(
-      { success: false, message: 'Failed to create product' },
+      { success: false, message: `Failed to create a product`},
       { status: 500 }
     );
   }
