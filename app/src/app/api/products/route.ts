@@ -1,85 +1,57 @@
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
+
 import path from 'path';
+import fs from 'fs';
 
 import { ProductData } from '@/types/Index';
-import { readJSON, writeJSON } from '../utils';
 
 
-export const productsPath = path.join(process.cwd(), 'public', 'data', 'products.json');
+const dataDir = path.join(process.cwd(), 'public', 'data');
+const productsPath = path.join(dataDir, 'products.json');
 
-export async function GET() {
-  try {
-    const products = readJSON<ProductData[]>(productsPath, []);
-
-    return NextResponse.json({
-      success: true,
-      data: products,
-    });
-  } catch (error) {
-    console.error('[ERROR][API][PRODUCT][GET] -> ', error);
-    return NextResponse.json(
-      { success: false, message: 'Failed to fetch products' },
-      { status: 500 }
-    );
+function ensureFile() {
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+  if (!fs.existsSync(productsPath)) {
+    fs.writeFileSync(productsPath, JSON.stringify([], null, 2));
   }
 }
 
+
+export function readProducts(): ProductData[] {
+  ensureFile();
+  return JSON.parse(fs.readFileSync(productsPath, 'utf-8'));
+}
+
+
+export function saveProducts(products: ProductData[]) {
+  ensureFile();
+  fs.writeFileSync(productsPath, JSON.stringify(products, null, 2));
+}
+
+
+export async function GET() {
+  const products = readProducts();
+  return NextResponse.json(products);
+}
+
+
 export async function POST(request: Request) {
-  try {
-    let body: Partial<ProductData>;
+  const product = await request.json();
+  const products = readProducts();
 
-    // Safe JSON parsing
-    try {
-      body = await request.json();
-    } catch {
-      return NextResponse.json(
-        { success: false, message: 'Invalid JSON body' },
-        { status: 400 }
-      );
-    }
+  const now = new Date().toISOString();
 
-    // Minimal validation
-    // TODO: Real validation
-    if (!body.name || !body.originalPrice) {
-      return NextResponse.json(
-        { success: false, message: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
+  const newProduct: ProductData = {
+    ...product,
+    uniqueID: uuidv4(),
+    createdAt: now,
+    updatedAt: now,
+    isActive: true,
+  };
 
-    const products = readJSON<ProductData[]>(productsPath, []);
-    const now = new Date().toISOString();
+  products.push(newProduct);
+  saveProducts(products);
 
-    // Calculate discountedPrice safely
-    const discountPercentage = body.discountPercentage ?? 0;
-    const discountedPrice =
-      body.discountedPrice && body.discountedPrice > 0
-        ? body.discountedPrice
-        : body.originalPrice -
-          body.originalPrice * (discountPercentage / 100);
-
-    const newProduct: ProductData = {
-      ...body,
-      discountedPrice,
-      uniqueID: uuidv4(),
-      createdAt: now,
-      updatedAt: now,
-      isActive: true,
-    } as ProductData;
-
-    products.push(newProduct);
-    writeJSON(productsPath, products);
-
-    return NextResponse.json(
-      { success: true, data: newProduct }, 
-      { status: 201 }
-    );
-  } catch (error) {
-    console.error('[ERROR][API][PRODUCT][POST] -> ', error);
-    return NextResponse.json(
-      { success: false, message: 'Failed to create product' },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(newProduct, { status: 201 });
 }
