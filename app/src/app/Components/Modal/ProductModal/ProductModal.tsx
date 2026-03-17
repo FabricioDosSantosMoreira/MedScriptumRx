@@ -1,11 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-
-import { ProductData } from '@/types/ProductData';
-import { createProduct, updateProduct, deleteProduct } from '@/lib/utils/products';
-
-import { ProductModalProps } from './ProductModal.types';
 import {
   Overlay,
   Modal,
@@ -29,6 +24,16 @@ import {
   SmallButton
 } from './ProductModal.styles';
 
+import { ProductData } from '@/types/Index';
+import { createProduct, updateProduct, deleteProduct as apiDeleteProduct } from '@/lib/utils/products';
+
+type Props = {
+  show: boolean;
+  onClose: () => void;
+  product?: ProductData | null;
+  onSaved: (saved: ProductData) => void;
+  onDeleted?: (id: string) => void;
+};
 
 const emptyForm = (): Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'> => ({
   name: '',
@@ -36,15 +41,14 @@ const emptyForm = (): Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'> 
   defaultHowToUse: '',
   defaultObservation: '',
   defaultAlert: '',
-  defaultPresentation: '',
-  originalPrice: 0.0,
-  discountedPrice: 0.0,
-  discountPercentage: 0,
-  isActive: true,
-  internalSystemID: '',
+  defaultPresentation: 0,
+  fullPriceTag: 0,
+  discountPriceTag: 0,
+  defaultDiscount: 0,
+  isActive: true
 });
 
-export default function ProductModal({ show, product, onClose, onSaved, onDeleted }: ProductModalProps) {
+export default function ProductModal({ show, onClose, product, onSaved, onDeleted }: Props) {
   const [form, setForm] = useState<Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'>>(emptyForm());
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -58,12 +62,11 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
         defaultHowToUse: product.defaultHowToUse ?? '',
         defaultObservation: product.defaultObservation ?? '',
         defaultAlert: product.defaultAlert ?? '',
-        defaultPresentation: product.defaultPresentation ?? '',
-        originalPrice: product.originalPrice ?? 0,
-        discountedPrice: product.discountedPrice ?? 0,
-        discountPercentage: product.discountPercentage ?? 0,
-        isActive: product.isActive ?? true,
-        internalSystemID: product.internalSystemID ?? ''
+        defaultPresentation: product.defaultPresentation ?? 0,
+        fullPriceTag: product.fullPriceTag ?? 0,
+        discountPriceTag: product.discountPriceTag ?? 0,
+        defaultDiscount: product.defaultDiscount ?? 0,
+        isActive: product.isActive ?? true
       });
     } else {
       setForm(emptyForm());
@@ -99,19 +102,15 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
       // normalize blank why entries
       payload.defaultWhyToUse = payload.defaultWhyToUse.map(w => w.trim()).filter(w => w !== '');
       let saved: ProductData;
-      let response: any;
       if (product && (product.uniqueID)) {
-        response = await updateProduct(product.uniqueID, payload as any);
+        saved = await updateProduct(product.uniqueID, payload as any);
       } else {
-        response = await createProduct(payload as any);
+        saved = await createProduct(payload as any);
       }
-
-      console.log(response);
-      saved = response;  
       onSaved(saved);
       onClose();
     } catch (err: any) {
-      setError(err?.message || err?.error || 'Erro ao salvar produto');
+      setError(err?.message || 'Erro ao salvar produto');
     } finally {
       setSaving(false);
     }
@@ -123,7 +122,7 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
     setDeleting(true);
     setError(null);
     try {
-      await deleteProduct(product.uniqueID);
+      await apiDeleteProduct(product.uniqueID);
       if (onDeleted) onDeleted(product.uniqueID);
       onClose();
     } catch (err: any) {
@@ -149,11 +148,6 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
             <Field>
               <span>Nome</span>
               <Input value={form.name} onChange={e => updateField('name', e.target.value)} required />
-            </Field>
-
-            <Field>
-              <span>ID Interno</span>
-              <NumberInput value={form.internalSystemID} onChange={e => updateField('internalSystemID', e.target.value)} required />
             </Field>
 
             <Field>
@@ -187,23 +181,23 @@ export default function ProductModal({ show, product, onClose, onSaved, onDelete
 
           <RightCol>
             <Field>
-              <span>Apresentação (string)</span>
-              <Textarea value={form.defaultPresentation} onChange={e => updateField('defaultPresentation', e.target.value)} required />
+              <span>Apresentação (número)</span>
+              <NumberInput value={form.defaultPresentation} onChange={e => updateField('defaultPresentation', Number(e.target.value))} />
             </Field>
 
             <Field>
               <span>Preço cheio</span>
-              <NumberInput step="0.01" value={form.originalPrice === 0 ? '' : form.originalPrice} onChange={e => updateField('originalPrice', Number(e.target.value))} required/>
+              <NumberInput step="0.01" value={form.fullPriceTag} onChange={e => updateField('fullPriceTag', Number(e.target.value))} />
             </Field>
 
             <Field>
               <span>Preço com desconto</span>
-              <NumberInput step="0.01" value={form.discountedPrice} onChange={e => updateField('discountedPrice', Number(e.target.value))} />
+              <NumberInput step="0.01" value={form.discountPriceTag} onChange={e => updateField('discountPriceTag', Number(e.target.value))} />
             </Field>
 
             <Field>
               <span>Desconto padrão</span>
-              <NumberInput step="1" value={form.discountPercentage} onChange={e => updateField('discountPercentage', Number(e.target.value))}/>
+              <NumberInput step="0.01" value={form.defaultDiscount} onChange={e => updateField('defaultDiscount', Number(e.target.value))} />
             </Field>
 
             <Field>
