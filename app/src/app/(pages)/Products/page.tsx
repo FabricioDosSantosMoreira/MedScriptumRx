@@ -3,11 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { ProductData } from '@/app/Types/!Index';
 import {
-  Container,
   Header,
   Title,
   Controls,
-  NewButton,
+  ControlButton,
   Grid,
   Card,
   CardHeader,
@@ -21,12 +20,20 @@ import {
   CardFooter,
   ActionRow,
   IconButton,
-  Empty
+  Empty,
+  PageWrapper,
+  TableContainer,
+  ControlButtonIcon
 } from './page.styles';
 
 import EditProductModal from '@/components/Modal/EditProductModal/EditProductModal';
 import { getProducts, deleteProduct } from '@/lib/utils/product';
 import PageLayout from '@/components/Layouts/Page/PageLayout';
+
+import fetchIcon from '@/public/images/icons/icon-fetch.png'
+import addIcon from '@/public/images/icons/icon-add.png'
+
+
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<ProductData[]>([]);
@@ -88,87 +95,97 @@ export default function ProductsPage() {
 
   return (
     <PageLayout>
-    <Container>
-      <Header>
-        <Title>Produtos</Title>
-        <Controls>
-          <NewButton onClick={openNew}>+ Novo Produto</NewButton>
-        </Controls>
-      </Header>
+      <PageWrapper>
+        <TableContainer>
+        
+        <Header>
+          <Title>Produtos</Title>
+          <div>Total - {products.length}</div>
+          <Controls>
+            <ControlButton onClick={openNew}>
+              <ControlButtonIcon src={addIcon} alt='Adicionar'></ControlButtonIcon>
+            </ControlButton>
+            <ControlButton onClick={load}>
+              <ControlButtonIcon src={fetchIcon} alt='Atualizar'></ControlButtonIcon>
+            </ControlButton>
+          </Controls>
+        </Header>
 
-      {loading ? (
-        <div>Carregando...</div>
-      ) : error ? (
-        <div style={{ color: 'crimson' }}>{error}</div>
-      ) : products.length === 0 ? (
-        <Empty>Nenhum produto cadastrado.</Empty>
-      ) : (
-        <Grid>
-          {products.map(p => (
-            <Card key={p.uniqueID}>
-              <CardHeader>
-                <Name>{p.name}</Name>
-                <TagList>
-                  <Tag>{p.isActive ? 'Ativo' : 'Inativo'}</Tag>
-                  <Tag>{p.defaultPresentation ?? 0} un.</Tag>
-                </TagList>
-              </CardHeader>
+        {loading ? (
+          <div>Carregando...</div>
+        ) : error ? (
+          <div style={{ color: 'crimson' }}>{error}</div>
+        ) : products.length === 0 ? (
+          <Empty>Nenhum produto cadastrado.</Empty>
+        ) : (
+          <Grid>
+            {products.map(p => (
+              <Card key={p.uniqueID}>
+                <CardHeader>
+                  <Name>{p.name}</Name>
+                  <TagList>
+                    <Tag>{p.isActive ? 'Ativo' : 'Inativo'}</Tag>
+                    <Tag>{p.defaultPresentation ?? 'N/A'}</Tag>
+                    <Tag>{p.category ?? 'N/A'}</Tag>
+                  </TagList>
+                </CardHeader>
 
-              <Body>
-                {p.defaultWhyToUse && p.defaultWhyToUse.length > 0 && (
-                  <>
-                    <strong>Por que usar:</strong>
-                    <ul>
-                      {p.defaultWhyToUse.map((w, i) => <li key={i}>{w}</li>)}
-                    </ul>
-                  </>
-                )}
+                <Body>
+                  {p.defaultWhyToUse && p.defaultWhyToUse.length > 0 && (
+                    <>
+                      <strong>Por que usar:</strong>
+                      <ul>
+                        {p.defaultWhyToUse.map((w, i) => <li key={i}>{w}</li>)}
+                      </ul>
+                    </>
+                  )}
 
-                {p.defaultHowToUse && (
-                  <>
-                    <strong>Como usar:</strong>
-                    <div>{p.defaultHowToUse}</div>
-                  </>
-                )}
+                  {p.defaultHowToUse && (
+                    <>
+                      <strong>Como usar:</strong>
+                      <div>{p.defaultHowToUse}</div>
+                    </>
+                  )}
 
-                {p.defaultObservation && <div><strong>Obs:</strong> {p.defaultObservation}</div>}
-                {p.defaultAlert && <div style={{ color: '#8b0000' }}><strong>Alerta:</strong> {p.defaultAlert}</div>}
-              </Body>
+                  {p.defaultObservation && <div><strong>Obs:</strong> {p.defaultObservation}</div>}
+                  {p.defaultAlert && <div style={{ color: '#8b0000' }}><strong>Alerta:</strong> {p.defaultAlert}</div>}
+                </Body>
 
-              <PriceRow>
-                <PriceFull>R$ {Number(p.originalPrice ?? 0).toFixed(2)}</PriceFull>
-                <PriceDiscount>R$ {Number(p.discountedPrice ?? 0).toFixed(2)}</PriceDiscount>
-              </PriceRow>
+                <PriceRow>
+                  <PriceFull>R$ {Number(p.originalPrice ?? 0).toFixed(2)}</PriceFull>
+                  <PriceDiscount>R$ {Number(p.discountedPrice ?? 0).toFixed(2)}</PriceDiscount>
+                </PriceRow>
 
-              <CardFooter>
-                <ActionRow>
-                  <IconButton onClick={() => openEdit(p)}>Editar</IconButton>
-                  <IconButton onClick={() => handleDeleteFromCard(p.uniqueID)}>Excluir</IconButton>
-                </ActionRow>
+                <CardFooter>
+                  <ActionRow>
+                    <IconButton onClick={() => openEdit(p)}>Editar</IconButton>
+                    <IconButton onClick={() => handleDeleteFromCard(p.uniqueID)}>Excluir</IconButton>
+                  </ActionRow>
 
-                <div style={{ fontSize: 12, color: 'rgba(3,10,24,0.45)' }}>
-                  {p.discountPercentage ? `${p.discountPercentage}% off` : '—'}
-                </div>
-              </CardFooter>
-            </Card>
-          ))}
-        </Grid>
-      )}
+                  <div style={{ fontSize: 12, color: 'rgba(3,10,24,0.45)' }}>
+                    {p.discountPercentage ? `${p.discountPercentage}% off` : '—'}
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </Grid>
+        )}
 
-      <EditProductModal
-        show={modalOpen}
-        onClose={() => setModalOpen(false)}
-        product={editing ?? undefined}
-        onSaved={(saved) => {
-          onSaved(saved);
-          setModalOpen(false);
-        }}
-        onDeleted={(id) => {
-          onDeleted(id);
-          setModalOpen(false);
-        }}
-      />
-    </Container>
+        <EditProductModal
+          show={modalOpen}
+          onClose={() => setModalOpen(false)}
+          product={editing ?? undefined}
+          onSaved={(saved) => {
+            onSaved(saved);
+            setModalOpen(false);
+          }}
+          onDeleted={(id) => {
+            onDeleted(id);
+            setModalOpen(false);
+          }}
+        />
+      </TableContainer>
+      </PageWrapper>
     </PageLayout>
   );
 }

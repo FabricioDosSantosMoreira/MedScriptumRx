@@ -1,12 +1,30 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  max-width: 1200px;
-  margin: 28px auto;
-  padding: 24px;
-  background: url('/images/background/grid-01.jpg');
-  border-radius: 12px;
+export const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: calc(100% - 112px );
+  margin: 0px 56px;
+
+  gap: 28px;
 `;
+
+export const TableContainer = styled.div`
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(249,250,252,0.98));
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.04);
+  border: 1px solid rgba(15,23,42,0.04);
+`;
+
+
+
+
+
+
+
 
 export const Header = styled.div`
   display: flex;
@@ -28,20 +46,35 @@ export const Controls = styled.div`
   align-items: center;
 `;
 
-export const NewButton = styled.button`
-  background: linear-gradient(90deg,#2b9ef6,#2b76f6);
+
+export const ControlButton = styled.button`
   color: white;
   border: none;
+
   padding: 10px 14px;
   border-radius: 10px;
   cursor: pointer;
-  font-weight: 700;
-  box-shadow: 0 8px 26px rgba(43,118,246,0.12);
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.12);
+
+  &:hover {
+    opacity: 0.8;
+    box-shadow: 0 26px 26px rgba(43,118,246,0.12);
+
+  } 
 `;
+
+export const ControlButtonIcon = styled(Image)`
+  height: 36px;
+  width: 36px;
+`;
+
+
+
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
   gap: 18px;
 `;
 

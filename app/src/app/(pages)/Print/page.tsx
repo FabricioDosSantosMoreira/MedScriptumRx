@@ -37,7 +37,14 @@ export default function Page() {
       const resolved = resolvePrescriptions(
         filteredPrescriptions as PrescriptionData[],
         clients as ClientData[]
-      );
+      ).map(prescription => ({
+        ...prescription,
+
+      // Sort products by name length (DESC)
+      products: [...prescription.products].sort(
+        (a, b) => b.name.length - a.name.length
+      ),
+      }));
 
       setPrescriptions(resolved);
     } catch (err: any) {
@@ -58,13 +65,9 @@ export default function Page() {
       arr.slice(i * size, i * size + size)
     );
 
-  const singles = prescriptions.filter(p => p.isSingle);
-  const normals = prescriptions.filter(p => !p.isSingle);
-
-  const normalGroups = chunkArray(normals, 2);
+  const normalGroups = chunkArray(prescriptions, 2);
 
   const prescriptionGroups: ResolvedPrescription[][] = [
-    ...singles.map(s => [s]),
     ...normalGroups,
   ];
 
