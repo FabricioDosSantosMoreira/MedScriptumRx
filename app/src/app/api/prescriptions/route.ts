@@ -1,9 +1,11 @@
+// app/api/prescriptions/route.ts (or your existing route.ts)
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import fs from 'fs';
 
-import { PrescriptionData, ResolvedProductData } from '@/types/Index';
+import type { PrescriptionData, ResolvedProductData } from '@/types/PrescriptionData';
+import type { ProductData } from '@/types/Index';
 
 const dataDir = path.join(process.cwd(), 'public', 'data');
 const prescriptionsPath = path.join(dataDir, 'prescriptions.json');
@@ -17,7 +19,12 @@ function ensureFile() {
 
 export function readPrescriptions(): PrescriptionData[] {
   ensureFile();
-  return JSON.parse(fs.readFileSync(prescriptionsPath, 'utf-8'));
+  try {
+    return JSON.parse(fs.readFileSync(prescriptionsPath, 'utf-8'));
+  } catch (err) {
+    fs.writeFileSync(prescriptionsPath, JSON.stringify([], null, 2));
+    return [];
+  }
 }
 
 export function savePrescriptions(data: PrescriptionData[]) {
@@ -34,51 +41,77 @@ export async function POST(request: Request) {
   const prescriptions = readPrescriptions();
   const now = new Date().toISOString();
 
-  // =============================
-  // NORMALIZE PRODUCTS
-  // =============================
-  const products: ResolvedProductData[] = data.products.map(
-    (p: ResolvedProductData) => {
-      const finalPrice =
-        p.finalPrice ??
-        p.discountPriceTag ??
-        p.fullPriceTag ??
-        0;
+  if (!data.clientUniqueID) {
+    return NextResponse.json({ error: 'clientUniqueID is required' }, { status: 400 });
+  }
 
-      return {
-        ...p,
-        finalPrice,
-        args: p.args ?? {},
-      };
-    }
-  );
+  const incomingProducts = Array.isArray(data.products) ? data.products : [];
 
-  const productsTotalCost = products.reduce(
-    (sum, p) => sum + (p.finalPrice ?? 0),
-    0
-  );
+  const products: ResolvedProductData[] = incomingProducts
+    .map((p: any) => {
+      // backward compatibility: if wrapped product exists, flatten it
+      if (p && typeof p === 'object' && 'product' in p && p.product) {
+        const prod: ProductData = p.product;
+        const args = p.args ?? {};
+        const finalPrice = Number(
+          p.finalPrice ??
+            (prod as any).discountPriceTag ??
+            (prod as any).fullPriceTag ??
+            (prod as any).cost ??
+            0
+        );
 
-  const hasDeliveryCost = data.hasDeliveryCost ?? false;
-  const deliveryCost = data.deliveryCost ?? 0;
+        return {
+          ...prod,
+          args,
+          finalPrice,
+        } as ResolvedProductData;
+      }
+
+      // otherwise assume p is already a flattened ProductData + args + finalPrice
+      if (p && typeof p === 'object') {
+        const args = p.args ?? {};
+        const finalPrice = Number(
+          p.finalPrice ??
+            p.discountPriceTag ??
+            p.fullPriceTag ??
+            (p as any).cost ??
+            0
+        );
+
+        // copy all product fields (uniqueID, name, etc.) plus args + finalPrice
+        const { args: _a, finalPrice: _f, ...productFields } = p;
+        return {
+          ...(productFields as ProductData),
+          args,
+          finalPrice,
+        } as ResolvedProductData;
+      }
+
+      // invalid entry -> skip
+      return null;
+    })
+    .filter(Boolean) as ResolvedProductData[];
+
+  const productsTotalCost = products.reduce((sum, p) => sum + (Number(p.finalPrice ?? 0)), 0);
+
+  const hasDeliveryCost = !!data.hasDeliveryCost;
+  const deliveryCost = hasDeliveryCost ? Number(data.deliveryCost ?? 0) : 0;
 
   const finalPrice =
     data.finalPrice != null
-      ? data.finalPrice
-      : hasDeliveryCost
-        ? productsTotalCost + deliveryCost
-        : productsTotalCost;
+      ? Number(data.finalPrice)
+      : productsTotalCost + (hasDeliveryCost ? deliveryCost : 0);
 
-  // =============================
-  // BUILD PRESCRIPTION
-  // =============================
   const newPrescription: PrescriptionData = {
     uniqueID: uuidv4(),
     clientUniqueID: data.clientUniqueID,
 
     products,
+    productlength: products.length,
     productsTotalCost,
     deliveryCost,
-    finalPrice,
+    finalPrice: Number(finalPrice),
 
     hasDeliveryCost,
     isActive: data.isActive ?? true,

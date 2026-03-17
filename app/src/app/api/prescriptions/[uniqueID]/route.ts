@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { readPrescriptions, savePrescriptions } from '../route';
 
-import { PrescriptionData, ResolvedProductData } from '@/types/Index';
-
+import type { PrescriptionData, ResolvedProductData } from '@/types/PrescriptionData';
 
 export async function PUT(
   request: Request,
@@ -14,56 +13,41 @@ export async function PUT(
   const index = prescriptions.findIndex(p => p.uniqueID === params.uniqueID);
 
   if (index === -1) {
-    return NextResponse.json(
-      { message: 'Prescription not found' },
-      { status: 404 }
-    );
+    return NextResponse.json({ error: 'Prescription not found' }, { status: 404 });
   }
 
   const existing = prescriptions[index];
 
-  // =============================
-  // UPDATE PRODUCTS
-  // =============================
-  const products: ResolvedProductData[] = data.products
-    ? data.products.map((p: ResolvedProductData) => {
-        const finalPrice =
-          p.finalPrice != null
-            ? p.finalPrice
-            : p.product.discountPriceTag ?? p.product.fullPriceTag;
-
-        return {
-          product: p.product,
-          args: p.args ?? {},
-          finalPrice,
-        };
-      })
+  const products: ResolvedProductData[] = Array.isArray(data.products)
+    ? data.products.map((p: ResolvedProductData) => ({
+        ...p,
+        args: p.args ?? {},
+        finalPrice:
+          p.finalPrice ??
+          p.discountPriceTag ??
+          p.fullPriceTag ??
+          (p as any).cost ??
+          0,
+      }))
     : existing.products;
 
-  // =============================
-  // CALCULATIONS
-  // =============================
   const productsTotalCost = products.reduce(
-    (sum, p) => sum + (p.finalPrice ?? 0),
+    (sum, p) => sum + Number(p.finalPrice ?? 0),
     0
   );
 
   const hasDeliveryCost = data.hasDeliveryCost ?? existing.hasDeliveryCost;
-  const deliveryCost = data.deliveryCost ?? existing.deliveryCost;
+  const deliveryCost = hasDeliveryCost
+    ? Number(data.deliveryCost ?? existing.deliveryCost)
+    : 0;
 
   const finalPrice =
     data.finalPrice != null
-      ? data.finalPrice
-      : hasDeliveryCost
-        ? productsTotalCost + deliveryCost
-        : productsTotalCost;
+      ? Number(data.finalPrice)
+      : productsTotalCost + (hasDeliveryCost ? deliveryCost : 0);
 
-  // =============================
-  // BUILD UPDATED OBJECT
-  // =============================
   const updated: PrescriptionData = {
     ...existing,
-    client: data.client ?? existing.client,
     products,
     productsTotalCost,
     deliveryCost,
@@ -76,16 +60,16 @@ export async function PUT(
     updatedAt: new Date().toISOString(),
   };
 
-  // =============================
-  // SAVE ARRAY (CRITICAL)
-  // =============================
   prescriptions[index] = updated;
   savePrescriptions(prescriptions);
 
   return NextResponse.json(updated);
 }
 
-export async function DELETE(_: Request, { params }: { params: { uniqueID: string } }) {
+export async function DELETE(
+  _: Request,
+  { params }: { params: { uniqueID: string } }
+) {
   const prescriptions = readPrescriptions().filter(p => p.uniqueID !== params.uniqueID);
   savePrescriptions(prescriptions);
 
