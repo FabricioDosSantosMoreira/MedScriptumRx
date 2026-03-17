@@ -1,19 +1,21 @@
 export type ProductData = {
   name:     string;  
-  uniqueID: string;  // UUID4
+  uniqueID: string;
 
   defaultWhyToUse:     string[]
   defaultHowToUse:     string;
   defaultObservation:  string;
+  defaultPresentation: string;
   defaultAlert:        string;
-  defaultPresentation: number;
 
-  fullPriceTag:     number;
-  discountPriceTag: number;
-  defaultDiscount:  number;
+  originalPrice:      number;
+  discountedPrice:    number;  
+  discountPercentage: number;
 
   createdAt: string;
   updatedAt: string;
   
   isActive: boolean;
+
+  internalSystemID: string; // The Internal PDV ID
 }
