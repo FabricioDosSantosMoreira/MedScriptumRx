@@ -1,4 +1,4 @@
-import { ApiResponse, ClientData, PrescriptionData, ResolvedProductData } from '@/app/Types/index';
+import { ApiResponse, ClientData, PrescriptionData, ResolvedProductData } from '@/app/Types/!Index';
 
 
 export function formatDate(iso?: string) {
@@ -101,26 +101,23 @@ export function calculatePrescriptionPrices(
   const deliveryCost = Number(data.deliveryCost ?? 0);
 
   // 1️⃣ Calculate products total
-  let productsTotalCost = products.reduce(
-    (sum, p) => sum + Number(p.finalPrice ?? 0) * p.quantity,
+  const productsTotalCost = products.reduce(
+    (sum, p) => sum + Number(p.finalPrice ?? 0),
     0
   );
 
   // 2️⃣ Calculate final price
-  let calculatedFinal =
+  const calculatedFinal =
     productsTotalCost +
     (hasDeliveryCost ? deliveryCost : 0);
 
   // 3️⃣ Respect manual finalPrice if present
-  let finalPrice =
+  const finalPrice =
     data.finalPrice !== undefined &&
     data.finalPrice !== null
       ? Number(data.finalPrice)
       : calculatedFinal;
 
-  productsTotalCost = Number(productsTotalCost.toFixed(2));
-  finalPrice = Number(finalPrice.toFixed(2));
-  
   return {
     productsTotalCost,
     finalPrice,
