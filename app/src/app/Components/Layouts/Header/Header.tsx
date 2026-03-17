@@ -13,7 +13,6 @@ export default function Header() {
           <HeaderButton onClick={() => handleNavigation('./')}>Índice</HeaderButton>
           <HeaderButton onClick={() => handleNavigation('./Print/')}>Impressão</HeaderButton>
           <HeaderButton onClick={() => handleNavigation('./History/')}>Histórico</HeaderButton>
-          <HeaderButton onClick={() => handleNavigation('./PickingList/')}>Lista</HeaderButton>
 
           <div style={{'marginLeft': '128px'}}></div>
 
