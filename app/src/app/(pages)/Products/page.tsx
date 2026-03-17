@@ -25,7 +25,7 @@ import {
 } from './page.styles';
 
 import ProductModal from '@/components/Modal/ProductModal/ProductModal';
-import { fetchProducts, deleteProduct as apiDeleteProduct } from '@/lib/utils/products';
+import { fetchProducts, deleteProduct } from '@/lib/utils/products';
 import PageLayout from '@/app/Components/Layouts/Page/PageLayout';
 
 export default function ProductsPage() {
@@ -75,7 +75,7 @@ export default function ProductsPage() {
   async function handleDeleteFromCard(id: string) {
     if (!confirm('Excluir produto?')) return;
     try {
-      await apiDeleteProduct(id);
+      await deleteProduct(id);
       setProducts(prev => prev.filter(p => p.uniqueID !== id));
     } catch (err: any) {
       alert(err?.message || 'Erro ao excluir');
@@ -136,8 +136,8 @@ export default function ProductsPage() {
               </Body>
 
               <PriceRow>
-                <PriceFull>R$ {Number(p.fullPriceTag ?? 0).toFixed(2)}</PriceFull>
-                <PriceDiscount>R$ {Number(p.discountPriceTag ?? 0).toFixed(2)}</PriceDiscount>
+                <PriceFull>R$ {Number(p.originalPrice ?? 0).toFixed(2)}</PriceFull>
+                <PriceDiscount>R$ {Number(p.discountedPrice ?? 0).toFixed(2)}</PriceDiscount>
               </PriceRow>
 
               <CardFooter>
@@ -147,7 +147,7 @@ export default function ProductsPage() {
                 </ActionRow>
 
                 <div style={{ fontSize: 12, color: 'rgba(3,10,24,0.45)' }}>
-                  {p.defaultDiscount ? `${p.defaultDiscount}% off` : '—'}
+                  {p.discountPercentage ? `${p.discountPercentage}% off` : '—'}
                 </div>
               </CardFooter>
             </Card>
