@@ -19,7 +19,7 @@ const ClientsPage: React.FC = () => {
 
   // Fetch clients on component mount (client-side data fetching):contentReference[oaicite:2]{index=2}
   useEffect(() => {
-    fetch('/Api/Clients')
+    fetch('/api/clients')
       .then(res => res.json())
       .then((data: ClientData[]) => {
         setClients(data);
@@ -68,7 +68,7 @@ const ClientsPage: React.FC = () => {
   // Create or Update client via POST (upsert behavior)
   const saveClient = async (client: any) => {
     try {
-      const response = await fetch('/Api/Clients', {
+      const response = await fetch('/api/clients', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ client }),
@@ -98,7 +98,7 @@ const ClientsPage: React.FC = () => {
   // Delete a client via DELETE request
   const deleteClient = async (id: string) => {
     try {
-      const response = await fetch(`/Api/Clients?uniqueID=${id}`, { method: 'DELETE' });
+      const response = await fetch(`/api/clients?uniqueID=${id}`, { method: 'DELETE' });
       if (!response.ok) throw new Error('Failed to delete client');
       setClients(prev => prev.filter(c => c.uniqueID !== id));
     } catch (err) {

@@ -5,8 +5,8 @@ import Home from './(pages)/Result/page';
 
 export function generateMetadata(): Promise<Metadata> {
   return Promise.resolve({
-    title: 'Home',
-    description: 'Home Page',
+    title: 'Index',
+    description: 'Index Page',
   });
 };
 
