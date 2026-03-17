@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from 'styled-components'
-import { theme } from './Theme/CustomTheme';
+import { theme } from '@/styles/Theme/CustomTheme';
 
 
 declare module 'styled-components' {
