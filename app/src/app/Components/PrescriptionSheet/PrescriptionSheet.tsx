@@ -119,6 +119,8 @@ export default function PrescriptionSheet({ resolvedPrescription }: Prescription
         <ProductList>
         {resolvedPrescription.products.map((product, idx) => {
 
+          if (product.args?.disablePrint) return null;
+          
           // Merge defaults with provided args
           const productArgs: ProductArgs = {
             ...defaulProductArgs,
