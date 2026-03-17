@@ -1,4 +1,4 @@
-import { ApiResponse, ClientData, PrescriptionData, ResolvedProductData } from '@/app/Types/!Index';
+import { ApiResponse, ClientData, PrescriptionData, ResolvedProductData } from '@/app/Types/index';
 
 
 export function formatDate(iso?: string) {
@@ -69,7 +69,11 @@ export async function handleAPIResponse<T>(res: Response): Promise<T> {
 
 
 
-export type NoExtraKeysFromArray<T, Allowed extends readonly string[]> = Exclude<keyof T, Allowed[number]> extends never ? T : never;
+// export type NoExtraKeysFromArray<T, Allowed extends readonly string[]> = Exclude<keyof T, Allowed[number]> extends never ? T : never;
+
+export type NoExtraKeysFromArray<T, Allowed extends readonly string[]> = {
+  [K in Extract<keyof T, Allowed[number]>]: T[K];
+};
 
 export function validateNoExtraFields<
   Allowed extends readonly string[]
@@ -101,23 +105,26 @@ export function calculatePrescriptionPrices(
   const deliveryCost = Number(data.deliveryCost ?? 0);
 
   // 1️⃣ Calculate products total
-  const productsTotalCost = products.reduce(
-    (sum, p) => sum + Number(p.finalPrice ?? 0),
+  let productsTotalCost = products.reduce(
+    (sum, p) => sum + Number(p.finalPrice ?? 0) * p.quantity,
     0
   );
 
   // 2️⃣ Calculate final price
-  const calculatedFinal =
+  let calculatedFinal =
     productsTotalCost +
     (hasDeliveryCost ? deliveryCost : 0);
 
   // 3️⃣ Respect manual finalPrice if present
-  const finalPrice =
+  let finalPrice =
     data.finalPrice !== undefined &&
     data.finalPrice !== null
       ? Number(data.finalPrice)
       : calculatedFinal;
 
+  productsTotalCost = Number(productsTotalCost.toFixed(2));
+  finalPrice = Number(finalPrice.toFixed(2));
+  
   return {
     productsTotalCost,
     finalPrice,

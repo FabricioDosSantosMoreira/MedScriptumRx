@@ -26,7 +26,6 @@ export type PrescriptionData = {
   updatedAt: string;
  
   isActive: boolean;
-  isSingle: boolean;
   isPayed:  boolean;
   hasDeliveryCost: boolean;
 

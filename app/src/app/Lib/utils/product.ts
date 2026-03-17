@@ -7,6 +7,7 @@ type ProductPayload = Omit<ProductData, 'uniqueID' | 'createdAt' | 'updatedAt'>;
 const API_BASE: string = '/Api/Products';
 export const allowedProductDataPropertiesOnChange = [
   'name', 
+  'category',
   
   'defaultAlert',  
   'defaultWhyToUse', 
@@ -20,7 +21,7 @@ export const allowedProductDataPropertiesOnChange = [
   
   'isActive', 
   'internalSystemID',
-] as const;
+];
 
 
 export async function getProducts(): Promise<ProductData[]> {

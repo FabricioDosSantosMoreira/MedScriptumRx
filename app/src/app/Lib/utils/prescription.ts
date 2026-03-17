@@ -8,6 +8,7 @@ const API_BASE: string = '/Api/Prescriptions';
 export const allowedPrescriptionDataPropertiesOnChange = [
   'uniqueID', 
   'clientUniqueID',
+  'internalSystemID',
 
   'products', 
   'productsTotalCost', 
@@ -17,7 +18,6 @@ export const allowedPrescriptionDataPropertiesOnChange = [
   'hasDeliveryCost',
 
   'isActive',
-  'isSingle',
   'isPayed',
   'args',
 ] as const;

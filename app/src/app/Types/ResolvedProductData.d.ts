@@ -1,5 +1,12 @@
 import { ProductData } from '@/types/ProductData';
 
+type ProductArgs = {
+  useListIcon: boolean, 
+  useAlertIcon: boolean, 
+  useCalendarIcon: boolean, 
+  useObservationIcon: boolean,
+  disablePrint: boolean,
+}
 
 export type ResolvedProductData =
   Omit<
@@ -18,5 +25,8 @@ export type ResolvedProductData =
     presentation: string;
     alert:        string;
 
+    quantity: number;
+
     finalPrice?: number;
+    internalSystemID: string;
 };

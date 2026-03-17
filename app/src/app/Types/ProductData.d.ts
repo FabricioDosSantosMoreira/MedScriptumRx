@@ -1,6 +1,7 @@
 export type ProductData = {
   name:     string;  
   uniqueID: string;
+  category: string;
 
   defaultWhyToUse:     string[]
   defaultHowToUse:     string;
