@@ -1,13 +1,18 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
-import { loadPrescriptions, loadClients } from '@/lib/utils/utils';
-import { PrescriptionData, ClientData } from '@/app/Types/Index';
-
-import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';
 import PageLayout from '@/components/Layouts/Page/PageLayout';
+import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';
+
+import { getPrescriptions } from '@/lib/utils/prescription';
+import { getClients } from '@/lib/utils/client';
+import { resolvePrescriptions } from '@/lib/resolvePrescriptions';
+
+import { PrescriptionData } from '@/types/PrescriptionData';
+import { ClientData } from '@/types/ClientData';
+import { ResolvedPrescription } from '@/types/ResolvedPrescription';
 
 import {
   PrintableContainer,
@@ -24,118 +29,137 @@ import {
   SortToggle,
 } from './page.styles';
 
-
 export default function Page() {
+  const [prescriptions, setPrescriptions] =
+    useState<ResolvedPrescription[]>([]);
 
-  const [prescriptions, setPrescriptions] = useState<PrescriptionData[]>([]);
-  const [clients, setClients] = useState<ClientData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    // carregar histórico: passe true para carregar histórico (conforme sua função existente)
-    loadPrescriptions(false).then(setPrescriptions);
-    loadClients(true).then(setClients);
+  /* --------------------------------
+     Load + Resolve
+  -------------------------------- */
+
+  const loadData = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const [raw, clients] = await Promise.all([
+        getPrescriptions(),
+        getClients(),
+      ]);
+
+      // only inactive (history)
+      const history = (raw as PrescriptionData[]).filter(
+        p => p.isActive === false
+      );
+
+      const resolved = resolvePrescriptions(
+        history,
+        clients as ClientData[]
+      );
+
+      setPrescriptions(resolved);
+    } catch (err: any) {
+      console.error(err);
+      setError(err?.message ?? 'Erro carregando histórico');
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
-  const updatePrescriptionData = () => {
-    loadPrescriptions(false).then(setPrescriptions);
-    loadClients(true).then(setClients);
-  }
+  /* --------------------------------
+     Filters
+  -------------------------------- */
 
+  const [filterClientID, setFilterClientID] = useState('');
+  const [dateFrom, setDateFrom] = useState('');
+  const [dateTo, setDateTo] = useState('');
+  const [sortOrder, setSortOrder] =
+    useState<'recent' | 'oldest'>('recent');
 
-  // --------------------------------------------------
-  // RESOLVE PRESCRIPTIONS -> PrescriptionData[]
-  // --------------------------------------------------
-  const PrescriptionDatas = useMemo<PrescriptionData[]>(() => {
-    const clientMap = new Map<string, ClientData>();
-    clients.forEach(c => clientMap.set(c.uniqueID, c));
+  /* --------------------------------
+     Client Select
+  -------------------------------- */
 
-    return prescriptions
-      .map((p): PrescriptionData | null => {
-        // require uniqueID
-        if (!p.uniqueID) return null;
-
-        const client = p.clientID ? clientMap.get(p.clientID) ?? null : null;
-
-        // if there's no client, skip — you can change this behavior if you prefer to show "Cliente desconhecido"
-        if (!client) return null;
-
-        return {
-          uniqueID: p.uniqueID,
-          client,
-          createdAt: p.createdAt ?? new Date().toISOString(),
-          isActive: p.isActive ?? true,
-          isSingle: p.isSingle ?? false,
-          products: Array.isArray(p.products) ? p.products : [],
-          args: p.args ?? {},
-        };
-      })
-      .filter(Boolean) as PrescriptionData[];
-  }, [prescriptions, clients]);
-
-  // filter states
-  const [filterName, setFilterName] = useState<string>(''); // will hold client.uniqueID or ''
-  const [dateFrom, setDateFrom] = useState<string>(''); // yyyy-mm-dd
-  const [dateTo, setDateTo] = useState<string>(''); // yyyy-mm-dd
-  const [sortOrder, setSortOrder] = useState<'recent' | 'oldest'>('recent');
-
-  // derive unique clients for the select (clientID + name + count)
   const uniqueClients = useMemo(() => {
     const counts = new Map<string, number>();
 
-    PrescriptionDatas.forEach((p) => {
-      if (!p.client?.uniqueID) return;
-      counts.set(p.client.uniqueID, (counts.get(p.client.uniqueID) ?? 0) + 1);
+    prescriptions.forEach(p => {
+      counts.set(
+        p.client.uniqueID,
+        (counts.get(p.client.uniqueID) ?? 0) + 1
+      );
     });
 
     return Array.from(counts.entries())
-      .map(([clientID, count]) => ({
-        clientID,
-        name: (clients.find(c => c.uniqueID === clientID)?.name) ?? 'Cliente desconhecido',
-        label: `[${count}] ${ (clients.find(c => c.uniqueID === clientID)?.name) ?? 'Cliente desconhecido' }`
-      }))
+      .map(([id, count]) => {
+        const name =
+          prescriptions.find(p => p.client.uniqueID === id)?.client
+            .name ?? 'Cliente desconhecido';
+
+        return {
+          id,
+          label: `[${count}] ${name}`,
+          name,
+        };
+      })
       .sort((a, b) => a.name.localeCompare(b.name));
-  }, [PrescriptionDatas, clients]);
+  }, [prescriptions]);
 
-  // helper: parse createdAt (accepts "dd/MM/yyyy, HH:mm:ss" OR ISO string)
-  const parseCreatedAt = (s?: string | null): Date | null => {
-    if (!s || typeof s !== 'string') return null;
+  /* --------------------------------
+     Date Parser
+  -------------------------------- */
 
-    // detect dd/MM/yyyy pattern (contains '/')
+  const parseDate = (s?: string | null): Date | null => {
+    if (!s) return null;
+
     if (s.includes('/')) {
       try {
-        const parts = s.split(',').map((x) => x.trim());
-        if (parts.length === 0) return null;
-        const datePart = parts[0]; // dd/MM/yyyy
-        const timePart = parts[1] || '00:00:00'; // HH:mm:ss
-        const [dd, mm, yyyy] = datePart.split('/').map((n) => Number(n));
-        const [hh, min, ss] = timePart.split(':').map((n) => Number(n));
-        if ([dd, mm, yyyy, hh, min, ss].some((v) => Number.isNaN(v))) return null;
-        return new Date(yyyy, mm - 1, dd, hh || 0, min || 0, ss || 0);
-      } catch (e) {
+        const [date, time = '00:00:00'] = s.split(', ');
+        const [d, m, y] = date.split('/').map(Number);
+        const [h, min, sec] = time.split(':').map(Number);
+
+        return new Date(y, m - 1, d, h, min, sec);
+      } catch {
         return null;
       }
     }
 
-    // otherwise, try ISO/parsable date
     const d = new Date(s);
-    if (Number.isNaN(d.getTime())) return null;
-    return d;
+    return Number.isNaN(d.getTime()) ? null : d;
   };
 
-  const fromDate = dateFrom ? new Date(dateFrom + 'T00:00:00') : null;
-  const toDate = dateTo ? new Date(dateTo + 'T23:59:59') : null;
+  const fromDate = dateFrom
+    ? new Date(dateFrom + 'T00:00:00')
+    : null;
 
-  // filtering logic operates over PrescriptionDatas
-  const filteredResolved = useMemo(() => {
-    let out = PrescriptionDatas.filter((p) => {
-      // filter by client (filterName stores clientID)
-      if (filterName && filterName !== 'all' && p.client.uniqueID !== filterName) return false;
+  const toDate = dateTo
+    ? new Date(dateTo + 'T23:59:59')
+    : null;
 
-      // filter by date range using the custom parser
+  /* --------------------------------
+     Filtered Data
+  -------------------------------- */
+
+  const filtered = useMemo(() => {
+    let out = prescriptions.filter(p => {
+      if (
+        filterClientID &&
+        p.client.uniqueID !== filterClientID
+      ) {
+        return false;
+      }
+
       if (fromDate || toDate) {
-        const created = parseCreatedAt(p.createdAt);
+        const created = parseDate(p.createdAt);
         if (!created) return false;
+
         if (fromDate && created < fromDate) return false;
         if (toDate && created > toDate) return false;
       }
@@ -143,43 +167,46 @@ export default function Page() {
       return true;
     });
 
-    // sort by createdAt
     out.sort((a, b) => {
-      const taDate = parseCreatedAt(a.createdAt);
-      const tbDate = parseCreatedAt(b.createdAt);
-      const ta = taDate ? taDate.getTime() : 0;
-      const tb = tbDate ? tbDate.getTime() : 0;
+      const ta = parseDate(a.createdAt)?.getTime() ?? 0;
+      const tb = parseDate(b.createdAt)?.getTime() ?? 0;
+
       return sortOrder === 'recent' ? tb - ta : ta - tb;
     });
 
     return out;
-  }, [PrescriptionDatas, filterName, dateFrom, dateTo, sortOrder]);
+  }, [prescriptions, filterClientID, fromDate, toDate, sortOrder]);
 
-  // Split array into chunks
-  const chunkArray = <T,>(arr: T[], size: number): T[][] =>
-    Array.from({ length: Math.max(1, Math.ceil(arr.length / size)) }, (_, i) =>
-      arr.slice(i * size, i * size + size)
+  /* --------------------------------
+     Grouping
+  -------------------------------- */
+
+  const chunk = <T,>(arr: T[], size: number): T[][] =>
+    Array.from(
+      { length: Math.ceil(arr.length / size) },
+      (_, i) => arr.slice(i * size, i * size + size)
     );
 
-  // Chunk only the filtered prescriptions (2 per group)
-  const normalGroups: PrescriptionData[][] = chunkArray(filteredResolved, 2);
+  const groups: ResolvedPrescription[][] = chunk(filtered, 2);
 
-  // Create final groups
-  const prescriptionGroups: PrescriptionData[][] = [
-    ...normalGroups,
-  ];
+  /* --------------------------------
+     Print
+  -------------------------------- */
 
-  // print hook (prints all visible sheets)
   const contentRef = React.useRef<HTMLDivElement | null>(null);
+
   const handlePrint = useReactToPrint({
     contentRef,
     preserveAfterPrint: true,
     documentTitle: 'Histórico',
   });
 
-  // clear filters
+  /* --------------------------------
+     Helpers
+  -------------------------------- */
+
   const clearFilters = () => {
-    setFilterName('');
+    setFilterClientID('');
     setDateFrom('');
     setDateTo('');
     setSortOrder('recent');
@@ -187,73 +214,93 @@ export default function Page() {
 
   const groupActionButtons: GroupActionButtons[] = [
     {
-      buttonName: "Imprimir 🖨️",
-      buttonType: "print",
-      buttonCallbackFunc: () => handlePrint
-    }
+      buttonName: 'Imprimir 🖨️',
+      buttonType: 'print',
+      buttonCallbackFunc: handlePrint,
+    },
   ];
 
+  /* --------------------------------
+     UI
+  -------------------------------- */
 
+  if (isLoading) return <p>Carregando...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <PageLayout>
       <PageContainer>
         <QuerySelectorContainer>
           <ControlsRow>
+            {/* CLIENT */}
             <div>
               <Label>Cliente</Label>
+
               <Select
-                value={filterName || 'all'}
-                onChange={(e) =>
-                  setFilterName(e.target.value === 'all' ? '' : e.target.value)
+                value={filterClientID || 'all'}
+                onChange={e =>
+                  setFilterClientID(
+                    e.target.value === 'all'
+                      ? ''
+                      : e.target.value
+                  )
                 }
               >
-                <option value="all">Todos os clientes</option>
+                <option value="all">
+                  Todos os clientes
+                </option>
 
-                {uniqueClients.map((item) => (
-                  <option key={item.clientID} value={item.clientID}>
-                    {item.label}
+                {uniqueClients.map(c => (
+                  <option key={c.id} value={c.id}>
+                    {c.label}
                   </option>
                 ))}
               </Select>
             </div>
 
+            {/* DATE FROM */}
             <div>
               <Label>Data (de)</Label>
               <DateInput
-                type='date'
+                type="date"
                 value={dateFrom}
-                onChange={(e) => setDateFrom(e.target.value)}
+                onChange={e => setDateFrom(e.target.value)}
               />
             </div>
 
+            {/* DATE TO */}
             <div>
               <Label>Data (até)</Label>
               <DateInput
-                type='date'
+                type="date"
                 value={dateTo}
-                onChange={(e) => setDateTo(e.target.value)}
+                onChange={e => setDateTo(e.target.value)}
               />
             </div>
 
+            {/* SORT */}
             <div>
-              <Label>Ordenar por</Label>
+              <Label>Ordenar</Label>
+
               <SortToggle>
                 <label>
                   <input
-                    type='radio'
-                    name='sort'
+                    type="radio"
                     checked={sortOrder === 'recent'}
-                    onChange={() => setSortOrder('recent')}
+                    onChange={() =>
+                      setSortOrder('recent')
+                    }
                   />
                   Mais recente
                 </label>
+
                 <label>
                   <input
-                    type='radio'
-                    name='sort'
+                    type="radio"
                     checked={sortOrder === 'oldest'}
-                    onChange={() => setSortOrder('oldest')}
+                    onChange={() =>
+                      setSortOrder('oldest')
+                    }
                   />
                   Mais antigo
                 </label>
@@ -262,26 +309,28 @@ export default function Page() {
           </ControlsRow>
 
           <ButtonsContainer>
-            <ClearButton onClick={clearFilters}>Limpar filtros</ClearButton>
+            <ClearButton onClick={clearFilters}>
+              Limpar filtros
+            </ClearButton>
 
-            <PrintButton onClick={handlePrint}>Imprimir Tudo</PrintButton>
+            <PrintButton onClick={handlePrint}>
+              Imprimir Tudo
+            </PrintButton>
           </ButtonsContainer>
         </QuerySelectorContainer>
 
-        {/* hidden wrapper for print hook */}
-
-        {filteredResolved.length === 0 ? (
-          <EmptyState>Nenhuma prescrição encontrada com os filtros selecionados.</EmptyState>
+        {filtered.length === 0 ? (
+          <EmptyState>
+            Nenhuma prescrição encontrada.
+          </EmptyState>
         ) : (
           <PrintableContainer ref={contentRef}>
-            {prescriptionGroups.map((group, groupId) => (
+            {groups.map((group, i) => (
               <PrescriptionGroup
-                key={groupId}
+                key={i}
                 group={group}
-                groupId={groupId}
                 groupActionButtons={groupActionButtons}
-                onDataUpdated={updatePrescriptionData}
-                isHistoryData={true}
+                onDataUpdated={loadData}
               />
             ))}
           </PrintableContainer>

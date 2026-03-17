@@ -1,44 +1,55 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const PageWrapper = styled.div`
   max-width: 1200px;
   margin: 28px auto;
-  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,252,0.98));
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-bottom: 120px;
+`;
+
+export const SubContainer = styled.section`
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(249,250,252,0.98));
   border-radius: 14px;
-  padding: 20px 22px;
-  box-shadow: 0 6px 20px rgba(16,24,40,0.08);
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.04);
+  border: 1px solid rgba(15,23,42,0.04);
 `;
 
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
 
-  h1 {
+  h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: -0.2px;
   }
-  .subtitle {
-    margin: 4px 0 0 0;
-    color: #6b7280;
-    font-size: 13px;
-  }
-`;
-
-export const SideInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
 `;
 
 export const ControlsRow = styled.div`
   display: flex;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 14px;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const TwoColumnControls = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
+export const FilterGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 160px;
+  label { font-size: 12px; color: #6b7280; }
 `;
 
 export const SearchInput = styled.input`
@@ -52,10 +63,24 @@ export const SearchInput = styled.input`
   outline: none;
   transition: box-shadow .15s ease, border-color .15s ease;
 
-  &:focus {
-    border-color: rgba(59,130,246,0.9);
-    box-shadow: 0 6px 20px rgba(59,130,246,0.08);
-  }
+  &:focus { border-color: rgba(59,130,246,0.9); box-shadow: 0 6px 20px rgba(59,130,246,0.08); }
+`;
+
+export const SmallInput = styled.input`
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.06);
+  outline: none;
+  min-width: 110px;
+  font-size: 13px;
+`;
+
+export const Select = styled.select`
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.06);
+  outline: none;
+  font-size: 13px;
 `;
 
 export const Tag = styled.span`
@@ -88,7 +113,7 @@ export const Button = styled.button<{ $outline?: boolean }>`
 `;
 
 export const TableWrapper = styled.div`
-  margin-top: 18px;
+  margin-top: 12px;
   overflow: auto;
   border-radius: 12px;
   border: 1px solid rgba(15,23,42,0.04);
@@ -117,12 +142,7 @@ export const Table = styled.table`
 
   tbody tr:hover { background: rgba(99,102,241,0.02); }
 
-  td {
-    padding: 14px 18px;
-    font-size: 14px;
-    vertical-align: middle;
-    color: #0f172a;
-  }
+  td { padding: 14px 18px; font-size: 14px; vertical-align: middle; color: #0f172a; }
 
   td.center { text-align: center; }
   td.nowrap { white-space: nowrap; }
@@ -131,12 +151,7 @@ export const Table = styled.table`
   .muted { color: #6b7280; font-size: 13px; }
 
   .product-list { display:flex; gap:8px; flex-wrap:wrap; }
-  .product-pill {
-    background: rgba(15,23,42,0.04);
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-size: 13px;
-  }
+  .product-pill { background: rgba(15,23,42,0.04); padding: 6px 10px; border-radius: 999px; font-size: 13px; }
   .product-more { font-size: 13px; color: #6b7280; padding: 6px 8px; }
 `;
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ProductData } from '@/types/Index';
+import { ProductData } from '@/app/Types/!Index';
 import {
   Container,
   Header,
@@ -24,9 +24,9 @@ import {
   Empty
 } from './page.styles';
 
-import ProductModal from '@/components/Modal/ProductModal/ProductModal';
-import { fetchProducts, deleteProduct } from '@/lib/utils/products';
-import PageLayout from '@/app/Components/Layouts/Page/PageLayout';
+import EditProductModal from '@/components/Modal/EditProductModal/EditProductModal';
+import { getProducts, deleteProduct } from '@/lib/utils/product';
+import PageLayout from '@/components/Layouts/Page/PageLayout';
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<ProductData[]>([]);
@@ -39,7 +39,7 @@ export default function ProductsPage() {
     setLoading(true);
     setError(null);
     try {
-      const list = await fetchProducts();
+      const list = await getProducts();
       setProducts(list);
     } catch (err: any) {
       console.error(err);
@@ -155,7 +155,7 @@ export default function ProductsPage() {
         </Grid>
       )}
 
-      <ProductModal
+      <EditProductModal
         show={modalOpen}
         onClose={() => setModalOpen(false)}
         product={editing ?? undefined}

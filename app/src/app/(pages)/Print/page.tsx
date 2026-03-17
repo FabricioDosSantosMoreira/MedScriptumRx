@@ -1,43 +1,72 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
-import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';
 import PageLayout from '@/components/Layouts/Page/PageLayout';
+import PrescriptionGroup from '@/components/PrescriptionGroup/PrescriptionGroup';
 
-import { loadClients, loadPrescriptions } from '@/lib/utils/utils';
-import { ResolvedPrescription } from '@/types/PrescriptionData';
-import { resolvePrescriptions } from '@/lib/utils/utils';
+import { getPrescriptions } from '@/lib/utils/prescription';
+import { getClients } from '@/lib/utils/client';
+import { resolvePrescriptions } from '@/lib/resolvePrescriptions';
 
-import {
-  PageContainer,
-} from './page.styles';
+import { PageContainer } from './page.styles';
 
+import { ResolvedPrescription } from '@/types/ResolvedPrescription';
+import { PrescriptionData } from '@/types/PrescriptionData';
+import { ClientData } from '@/types/ClientData';
+import { GroupActionButtons } from '@/app/Types';
 
 export default function Page() {
-  const [resolvedPrescriptions, setResolvedPrescriptions] = useState<ResolvedPrescription[]>([]);
+  const [prescriptions, setPrescriptions] = useState<ResolvedPrescription[]>([]);
 
-  const loadData = async () => {
-    const [prescriptions, clients] = await Promise.all([
-      loadPrescriptions(true),
-      loadClients(true),
-    ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-    const resolved = resolvePrescriptions(prescriptions, clients);
-    setResolvedPrescriptions(resolved);
-  };
+  const loadData = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const [rawPrescriptions, clients] = await Promise.all([
+        getPrescriptions(),
+        getClients(),
+      ]);
+
+      const filteredPrescriptions = rawPrescriptions.filter(p => p.isActive == true);
+
+      const resolved = resolvePrescriptions(
+        filteredPrescriptions as PrescriptionData[],
+        clients as ClientData[]
+      ).map(prescription => ({
+        ...prescription,
+
+      // Sort products by name length (DESC)
+      products: [...prescription.products].sort(
+        (a, b) => b.name.length - a.name.length
+      ),
+      }));
+
+      setPrescriptions(resolved);
+    } catch (err: any) {
+      console.error(err);
+      setError(err?.message ?? 'Erro carregando dados');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
+  // group helper
   const chunkArray = <T,>(arr: T[], size: number): T[][] =>
     Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
       arr.slice(i * size, i * size + size)
     );
 
-  const singles = resolvedPrescriptions.filter(p => p.isSingle);
-  const normals = resolvedPrescriptions.filter(p => !p.isSingle);
+  const singles = prescriptions.filter(p => p.isSingle);
+  const normals = prescriptions.filter(p => !p.isSingle);
 
   const normalGroups = chunkArray(normals, 2);
 
@@ -59,6 +88,9 @@ export default function Page() {
     },
   ];
 
+  if (isLoading) return <p>Carregando...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <PageLayout>
       <PageContainer>
@@ -66,10 +98,8 @@ export default function Page() {
           <PrescriptionGroup
             key={groupId}
             group={group}
-            groupId={groupId}
             groupActionButtons={groupActionButtons}
             onDataUpdated={loadData}
-            isHistoryData={false}
           />
         ))}
       </PageContainer>

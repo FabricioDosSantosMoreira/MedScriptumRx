@@ -1,37 +1,63 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
-import { loadPrescriptions, loadClients, resolvePrescriptions } from '@/lib/utils/utils';
-import { ClientData, PrescriptionData, ResolvedPrescription } from '@/types/Index';
+import { ClientData, PrescriptionData, ResolvedPrescription } from '@/app/Types/!Index';
 import { PageContainer } from './page.styles';
 
 import PrescriptionSheet from '@/components/PrescriptionSheet/PrescriptionSheet';
 import PageLayout from '@/components/Layouts/Page/PageLayout';
+import { getPrescriptions } from '@/lib/utils/prescription';
+import { getClients } from '@/lib/utils/client';
+import { resolvePrescriptions } from '@/app/Lib/resolvePrescriptions';
 
 
 export default function Page() {
-  const [resolvedPrescriptions, setResolvedPrescriptions] = useState<ResolvedPrescription[]>([]);
-  const [prescriptions, setPrescriptions] = useState<PrescriptionData[]>([]);
-  const [clients, setClients] = useState<ClientData[]>([]);
+  const [prescriptions, setPrescriptions] = useState<ResolvedPrescription[]>([]);
   
-  useEffect(() => {
-    loadPrescriptions(true).then((data) => setPrescriptions(data));
-    loadClients(true).then((data) => setClients(data));
-  }, []);
-
-  useEffect(() => {
-    setResolvedPrescriptions(resolvePrescriptions(prescriptions, clients));
-  }, [prescriptions, clients]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+  
+    const loadData = useCallback(async () => {
+      setIsLoading(true);
+      setError(null);
+  
+      try {
+        const [rawPrescriptions, clients] = await Promise.all([
+          getPrescriptions(),
+          getClients(),
+        ]);
+  
+        const resolved = resolvePrescriptions(
+          rawPrescriptions as PrescriptionData[],
+          clients as ClientData[]
+        );
+  
+        setPrescriptions(resolved);
+      } catch (err: any) {
+        console.error(err);
+        setError(err?.message ?? 'Erro carregando dados');
+      } finally {
+        setIsLoading(false);
+      }
+    }, []);
+  
+    useEffect(() => {
+      loadData();
+    }, [loadData]);
 
   return (
     <PageLayout>
       <PageContainer>
 
-        {resolvedPrescriptions.map((p, idx) => (
-          <PrescriptionSheet key={idx} data={p} />
-        ))}
-
+          {prescriptions.map((p) => {
+            return (
+              <PrescriptionSheet
+                key={p.uniqueID}
+                resolvedPrescription={p}
+              />
+            );
+          })}
       </PageContainer>
     </PageLayout>
   );
