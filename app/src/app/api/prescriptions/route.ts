@@ -4,7 +4,7 @@ import path from 'path';
 
 import { readJSON, writeJSON } from '../utils';
 
-import { PrescriptionData } from '@/app/Types/index';
+import { PrescriptionData } from '@/app/Types/!Index';
 import { calculatePrescriptionPrices, validateNoExtraFields } from '@/lib/utils';
 import { allowedPrescriptionDataPropertiesOnChange } from '@/lib/utils/prescription';
 
